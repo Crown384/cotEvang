@@ -232,6 +232,25 @@
   <script src="scripts/auth.js"></script>
   <script src="scripts/index.js"></script>
   <script src="scripts/app.js"></script>
+  
+  <script type="text/javascript" charset="utf-8">
+    async function loadExcelFiles() {
+  const res = await fetch('https://<region>-<project-id>.cloudfunctions.net/getExcelFiles');
+  const files = await res.json();
+
+  const container = document.getElementById('excel-container');
+  container.innerHTML = '';
+
+  files.forEach(file => {
+    const link = document.createElement('a');
+    link.href = file.url;
+    link.textContent = file.fileName;
+    link.target = '_blank';
+    container.appendChild(link);
+    container.appendChild(document.createElement('br'));
+  });
+}
+  </script>
 </body>
 </html>
 

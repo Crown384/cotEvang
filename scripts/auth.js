@@ -1,7 +1,4 @@
-// 
-
 const signupForm = document.querySelector('#signup-form');
-
 
 // SIGNUP USERS
 signupForm.addEventListener('submit', e => {
@@ -11,7 +8,7 @@ signupForm.addEventListener('submit', e => {
   const password = signupForm.password.value;
   
   auth.createUserWithEmailAndPassword(email, password).then(cred => {
-    // console.log(cred.user.uid);
+    console.log(cred.user.uid);
     return db.collection("users").doc(cred.user.uid).set({
       name: signupForm.username.value,
       phone: signupForm['signup-phone'].value,

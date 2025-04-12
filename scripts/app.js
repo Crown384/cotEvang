@@ -93,20 +93,50 @@ function uploadFresherFile(userUID) {
   });
 }
 
+async function fetchExcelFiles() {
+  try {
+    const res = await fetch('http://localhost:3000/excel-files');
+    const files = await res.json();
 
-// Load docs
+    const container = document.getElementById('allExcelFiles');
+    container.innerHTML = '';
 
-db.collection('users').get().then(snapshot => {
-  let html = '';
-  
-  snapshot.docs.forEach(doc => {
-    console.log(doc.data());
-    
-    html += ` <div>name: ${doc.data().name}</div>
-              <div>phone: ${doc.data().phone}</div>
-        `
-  })
-  
-  allExcelFiles.innerHTML = '';
-  allExcelFiles.innerHTML = html
+    // Load docs
+    db.collection('users').get().then(snapshot => {
+      let html = '';
+      snapshot.docs.forEach(doc => {
+        console.log(doc.data());
+        html += ` <div>name: ${doc.data().name}</div>
+          <div>phone: ${doc.data().phone}</div>`
+      })
+      // return html;
+      container.innerHTML += html;
+    })
+
+    if (files.length === 0) {
+      container.textContent = 'No Excel files found.';
+      return;
+    } else {
+      files.forEach(file => {
+        let link = `<a href="${file.url}" target="_blank">${file.fileName}</a>`;
+        container.innerHTML += link;
+        container.appendChild(document.createElement('hr'));
+      })
+    };
+
+  } catch (err) {
+    document.getElementById('allExcelFiles').textContent = 'Error loading files.';
+    console.error(err);
+  }
+}
+
+// SET UI
+
+
+// listen for atuh state changes
+auth.onAuthStateChanged (user => {
+  if (user) {
+    fetchExcelFiles();
+
+  }
 })

@@ -1,34 +1,38 @@
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <!-- Compiled and minified CSS -->
   <link rel="stylesheet" href="materialize.min.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <style>
-.material-symbols-outlined {
-  font-variation-settings:
-  'FILL' 1,
-  'wght' 400,
-  'GRAD' 0,
-  'opsz' 24
-}
+    .material-symbols-outlined {
+      font-variation-settings:
+        'FILL' 1,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24
+    }
 
- .tabs .indicator {
-   background-color: #009688;
- }
- 
- .tabs .tab a:focus, .tabs .tab a:focus.active {
-   background: transparent;
- }
-</style>
-<script type="text/javascript" charset="utf-8">
-  const CLOUDINARY_URL = "https://api.cloudinary.com/v1_1/djsofkqxq/upload";
+    .tabs .indicator {
+      background-color: #009688;
+    }
+
+    .tabs .tab a:focus,
+    .tabs .tab a:focus.active {
+      background: transparent;
+    }
+  </style>
+  <script type="text/javascript" charset="utf-8">
+    const CLOUDINARY_URL = "https://api.cloudinary.com/v1_1/djsofkqxq/upload";
     const UPLOAD_PRESET = "acadcotikole"; // If using unsigned upload
-</script>
+  </script>
   <title>Evangelism App</title>
 </head>
+
 <body class="">
 
   <!-- NAVBAR -->
@@ -37,31 +41,44 @@
       <a href="#" class="brand-logo">
         <!-- <img src="" style="width: 180px; margin-top: 10px;"> 
         
-        add logo - evangelism is by fire--> 
+        add logo - evangelism is by fire-->
       </a>
       <ul id="nav-mobile" class="right">
-          
-          <li class="logged-in">
-            <a href="#" class="grey-text" id="logout">Logout</a>
-          </li>
-          
-          <li class="logged-out">
-            <a href="#" class="grey-text modal-trigger" data-target="modal-login">Login</a>
-          </li>
-          <li class="logged-out">
-            <a href="#" class="grey-text modal-trigger" data-target="modal-signup">Sign up</a>
-          </li>
+
+        <li class="logged-in">
+          <a href="#" class="grey-text" id="logout">Logout</a>
+        </li>
+
+        <li class="logged-out">
+          <a href="#" class="grey-text modal-trigger" data-target="modal-login">Login</a>
+        </li>
+        <li class="logged-out">
+          <a href="#" class="grey-text modal-trigger" data-target="modal-signup">Sign up</a>
+        </li>
         </span>
       </ul>
     </div>
   </nav>
 
+  <!-- NON USERS -->
+   <div class="general logged-out">
+    <div class="fireAnimation"></div>
+    <h3 style="text-align: center; margin-bottom: 1rem;">Evangelism is by FIRE <br> therefore get Fire</h3>
+   </div>
+
+   <!-- FOOTER -->
+    <footer style="background-color: rosybrown; text-align: center;">
+      <p>Developed by PAMA Inc</p>
+      <p>Copyright c 2025 Chapel of Transformation Ikole</p>
+    </footer>
+
+  <!-- MODALS -->
   <!-- SIGN UP MODAL -->
-  <div id="modal-signup" class="modal">
+  <div id="modal-signup" class="modal logged-in">
     <div class="modal-content">
       <h4>Sign up</h4><br />
       <form id="signup-form">
-        
+
         <div class="input-field">
           <input type="email" id="email" required />
           <label for="email">
@@ -69,7 +86,7 @@
             <i class="material-symbols-outlined right">mail</i>
           </label>
         </div>
-        
+
         <div class="input-field">
           <input type="password" id="password" required />
           <label for="password">
@@ -77,37 +94,37 @@
             <i class="material-symbols-outlined right">key</i>
           </label>
         </div>
-        
-        
-         <div class="input-field">
+
+
+        <div class="input-field">
           <input type="text" id="username" required />
           <label for="username">
             <span>Name</span>
             <i class="material-symbols-outlined right">person</i>
           </label>
         </div>
-        
+
         <div class="input-field">
           <input type="tel" pattern="[0-9]{10}" id="signup-phone" required />
           <label for="signup-phone">
             Phone
-          <i class="material-symbols-outlined right">phone</i>
+            <i class="material-symbols-outlined right">phone</i>
           </label>
         </div>
-        
-         <div class="input-field">
+
+        <div class="input-field">
           <input type="number" id="signup-whatsapp" required />
           <label for="signup-whatsapp">Whatsapp</label>
         </div>
-        
-        
+
+
         <button class="btn teal darken-2 z-depth-0" style="width: 100%">Sign up</button>
       </form>
     </div>
   </div>
 
   <!-- LOGIN MODAL -->
-  <div id="modal-login" class="modal">
+  <div id="modal-login" class="modal logged-in">
     <div class="modal-content">
       <h4>Login</h4><br />
       <form id="login-form">
@@ -119,91 +136,91 @@
           <input type="password" id="login-password" required />
           <label for="login-password">
             Your password
-          <i class="material-symbols-outlined right">key</i>
+            <i class="material-symbols-outlined right">key</i>
           </label>
         </div>
         <button class="btn teal darken-2 z-depth-0" style="width: 100%">Login</button>
       </form>
     </div>
   </div>
-  
-  
-<div class="row">
+
+
+  <div class="row logged-in">
     <div class="col s12">
       <ul class="tabs">
         <li class="tab col s6 grey-text"><a class="active" href="#freshers">Freshers</a></li>
         <li class="tab col s6 teal-text"><a href="#staylites">Staylites 2</a></li>
-        <li class="tab col s6 teal-text"><a href="#allExcelFiles">ALL</a></li>
+        <li class="tab col s6 teal-text admin"><a href="#allExcelFiles">ALL</a></li>
       </ul>
     </div>
-    
-    <div id="freshers" class="col s10 blue-text">
+
+    <div id="freshers" class="col s10 blue-text logged-in">
       <form id="freshersForm">
-        
+
         <div class="input-field">
           <input type="text" id="name" required />
           <label for="name">Name</label>
         </div>
-        
+
         <div class="input-field">
           <input type="text" id="dept" required />
           <label for="dept">Department</label>
         </div>
-        
-         <div class="input-field">
+
+        <div class="input-field">
           <input type="text" id="address" required />
           <label for="address">Address</label>
         </div>
-        
+
         <div class="input-field">
           <input type="tel" pattern="[0-9]{10}" id="phone" required />
           <label for="phone">Phone</label>
         </div>
-        
+
         <button class="btn teal darken-2 z-depth-0 col s12" type="submit">
           Save Offline
-        <i class="material-symbols-outlined">save</i>
+          <i class="material-symbols-outlined">save</i>
         </button>
-        
+
         <a href="#" id="uploadExcelFresher" class="btn teal darken-2 z-depth-0 col s12 " style="margin-top: 0.5rem">
           <span>UPLOAD</span>
           <i class="material-symbols-outlined">upload</i>
         </a>
-        
+
         <div style="height: 0.03rem; margin-top: 0.7rem" class="grey col s12"></div>
-        
-           <a href="#" onclick="downloadExcel()" class="btn teal darken-2 z-depth-0 col s12 " style="margin-top: 0.5rem">
+
+        <a href="#" onclick="downloadExcel()" class="btn teal darken-2 z-depth-0 col s12 " style="margin-top: 0.5rem">
           <span>download</span>
           <i class="material-symbols-outlined right">download</i>
         </a>
       </form>
     </div>
-    
-    
-    
-    <div id="staylites" class="col s10">STAYLITES</div>
-    
-    <div id="allExcelFiles">
+
+
+
+    <div id="staylites" class="col s10 logged-in">STAYLITES</div>
+
+    <div id="allExcelFiles" class="logged-in">
       AllExcek Files
     </div>
   </div>
-  
-  
- <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-app.js"></script>
+
+
+  <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-firestore.js"></script>
- <script>
-  // Your web app's Firebase configuration
-  const firebaseConfig = {
-    apiKey: "AIzaSyCryhTlC3iWCjjNlAFzqJbJoMGUXTPoyxo",
-    authDomain: "evangelism-app-f36d8.firebaseapp.com",
-    projectId: "evangelism-app-f36d8",
-    storageBucket: "evangelism-app-f36d8.firebasestorage.app",
-    messagingSenderId: "1095966569190",
-    appId: "1:1095966569190:web:82ca3ebdab230b4f584127"
-  };
+  <script>
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyCryhTlC3iWCjjNlAFzqJbJoMGUXTPoyxo",
+      authDomain: "evangelism-app-f36d8.firebaseapp.com",
+      projectId: "evangelism-app-f36d8",
+      storageBucket: "evangelism-app-f36d8.firebasestorage.app",
+      messagingSenderId: "1095966569190",
+      appId: "1:1095966569190:web:82ca3ebdab230b4f584127"
+    };
 
-  // Initialize Firebase
+    // Initialize Firebase
     const app = firebase.initializeApp(firebaseConfig);
 
     // make auth and firestore references
@@ -213,17 +230,17 @@
     // update firestore settings
     db.settings({ timestampsInSnapshots: true });
   </script>
-  
+
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       var modals = document.querySelectorAll('.modal');
       var carousels = document.querySelectorAll('.carousel');
       var tabs = document.querySelectorAll('.tabs');
-  
+
       M.Modal.init(modals);
       M.Carousel.init(carousels);
       M.Tabs.init(tabs)
-      
+
     })
   </script>
   <!-- Compiled and minified JavaScript -->
@@ -233,5 +250,5 @@
   <script src="scripts/index.js"></script>
   <script src="scripts/app.js"></script>
 </body>
-</html>
 
+</html>

@@ -25,6 +25,10 @@
     .tabs .tab a:focus.active {
       background: transparent;
     }
+    
+    .logged-in {
+      display: none;
+    }
   </style>
   <script type="text/javascript" charset="utf-8">
     const CLOUDINARY_URL = "https://api.cloudinary.com/v1_1/djsofkqxq/upload";
@@ -62,7 +66,9 @@
 
   <!-- NON USERS -->
    <div class="general logged-out">
-    <div class="fireAnimation"></div>
+    <div class="fireAnimation" style="display: flex; justify-content: center; align-items: center;">
+      <img src="assests/fire.png" width="100px" alt="fire img">
+    </div>
     <h3 style="text-align: center; margin-bottom: 1rem;">Evangelism is by FIRE <br> therefore get Fire</h3>
    </div>
 

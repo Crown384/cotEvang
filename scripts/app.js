@@ -131,12 +131,33 @@ async function fetchExcelFiles() {
 }
 
 // SET UI
+const userInfo = document.querySelectorAll('.logged-in');
+const outsidersInfo = document.querySelectorAll('.logged-out');
 
+const setUI = (user) => {
+  if (user) {
+    userInfo.forEach(userIF => {
+      userIF.style.display = 'block';
+    });
+    outsidersInfo.forEach(userIF => {
+      userIF.style.display = 'none'
+    });
+  } else {
+    userInfo.forEach(userIF => {
+      userIF.style.display = 'none'
+    });
+    outsidersInfo.forEach(userIF => {
+      userIF.style.display = 'block'
+    });
+  }
+}
 
 // listen for atuh state changes
 auth.onAuthStateChanged (user => {
   if (user) {
     fetchExcelFiles();
-
+    setUI(user);
+  } else {
+    
   }
 })

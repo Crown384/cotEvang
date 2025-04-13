@@ -1,4 +1,6 @@
 const signupForm = document.querySelector('#signup-form');
+const loginForm = document.querySelector('#login-form');
+// const logOut = document.querySelector('#logout');
 
 // SIGNUP USERS
 signupForm.addEventListener('submit', e => {
@@ -21,4 +23,18 @@ signupForm.addEventListener('submit', e => {
   }).catch(err => {
     console.log(err.message)
   })
+})
+
+loginForm.addEventListener('submit', e => {
+  e.preventDefault();
+  
+  const email = loginForm['login-email'].value;
+  const password = loginForm['login-password'].value;
+  
+  auth.signInWithEmailAndPassword(email, password).then(user => {
+    alert('you logged in');
+    loginForm.reset();
+     const modalInstance = 
+    M.Modal.getInstance(document.querySelector('#modal-login')).close();
+  }).catch(err => alert(err.message));
 })

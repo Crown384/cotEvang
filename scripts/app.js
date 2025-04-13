@@ -40,9 +40,12 @@ auth.onAuthStateChanged(user => {
   if(user) {
     uploadBtnForFreshers.addEventListener('click', () => {
       uploadFresherFile(user.uid)
-    })
+    });
+    fetchExcelFiles();
+    setUI(user);
   } else {
     alert("no user logged in");
+    setUI();
   }
 })
 
@@ -118,9 +121,9 @@ async function fetchExcelFiles() {
       return;
     } else {
       files.forEach(file => {
-        let link = `<a href="${file.url}" target="_blank">${file.fileName}</a>`;
+        let link = `<a href="${file.url}" target="_blank">${file.fileName}</a><hr>`;
         container.innerHTML += link;
-        container.appendChild(document.createElement('hr'));
+        // container.appendChild(document.createElement('hr'));
       })
     };
 
@@ -151,13 +154,3 @@ const setUI = (user) => {
     });
   }
 }
-
-// listen for atuh state changes
-auth.onAuthStateChanged (user => {
-  if (user) {
-    fetchExcelFiles();
-    setUI(user);
-  } else {
-    
-  }
-})

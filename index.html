@@ -117,7 +117,7 @@
         </div>
 
         <div class="input-field">
-          <input type="tel" pattern="[0-9]{10}" id="signup-phone" required />
+          <input type="tel" pattern="[0-9]{11}" id="signup-phone" required />
           <label for="signup-phone">
             Phone
             <i class="material-symbols-outlined right">phone</i>
@@ -291,19 +291,6 @@
     function logOut() {
       auth.signOut().then(() => alert("You logged out")).catch(err => alert(`${err.message}`));
     }
-  </script>
-  
-  <script type="text/javascript" charset="utf-8">
-    const snapshot = db.collection('users').doc(file.fileName).get();
-        const data = snapshot.data();
-
-        if (data) {
-          const userInfo = document.createElement('div');
-          document.querySelector('body').innerHTML += `
-            <div>Name: ${data.name}</div>
-            <div>Phone: ${data.phone}</div>
-          `;
-        }
   </script>
 </body>
 

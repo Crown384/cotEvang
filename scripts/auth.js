@@ -22,6 +22,7 @@ signupForm.addEventListener('submit', e => {
     M.Modal.getInstance(document.querySelector('#modal-signup')).close();
   }).catch(err => {
     console.log(err.message)
+    M.toast({html: `${err.message}`});
   })
 })
 
@@ -32,7 +33,8 @@ loginForm.addEventListener('submit', e => {
   const password = loginForm['login-password'].value;
   
   auth.signInWithEmailAndPassword(email, password).then(user => {
-    alert('you logged in');
+    //alert('you logged in');
+    M.toast({html: `You logged In`});
     loginForm.reset();
      const modalInstance = 
     M.Modal.getInstance(document.querySelector('#modal-login')).close();

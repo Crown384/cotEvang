@@ -16,7 +16,8 @@ freshersForm.addEventListener('submit', e => {
   let savedData = JSON.parse(localStorage.getItem('freshersData')) || [];
   savedData.push(data);
   localStorage.setItem('freshersData', JSON.stringify(savedData));
-  alert("Saved offline");
+  // alert("Saved offline");
+  M.toast({html: "Saved Offline"});
   
   freshersForm.reset();
 });
@@ -39,7 +40,8 @@ auth.onAuthStateChanged(user => {
     fetchExcelFiles();
     setUI(user);
   } else {
-    alert("no user logged in");
+    // alert("no user logged in");
+    M.toast({html: `No User logged In`});
     setUI();
   }
 });
@@ -79,7 +81,8 @@ function uploadFresherFile(userUID) {
   .then(data => {
     if (data.secure_url) {
       console.log("File uploaded successfully:", data.secure_url);
-      alert("File uploaded successfully!");
+      // alert("File uploaded successfully!");
+      M.toast({html: `File Uploaded Successfully`});
     } else {
       console.log("Upload error:", data);
       alert("Upload failed!");
@@ -122,7 +125,7 @@ async function fetchExcelFiles() {
         const cloudinaryFileName = file.fileName;
         const userUid = cloudinaryFileName.replace(/\.xlsx$/, ''); // Removes ".xlsx" at
         const snapshot = await db.collection('users').doc(userUid).get();
-        console.log(file.fileName);
+        // console.log(file.fileName);
         const data = snapshot.data();
 
         if (data) {
@@ -173,7 +176,7 @@ const setUI = (user) => {
 const adminInfo = document.querySelectorAll(".admin");
 auth.onAuthStateChanged(user => {
   if (user) {
-    console.log(user.uid);
+    // console.log(user.uid);
     
     db.collection('users').doc(user.uid).get().then(snap => {
       const isadmin = snap.data().isAdmin;

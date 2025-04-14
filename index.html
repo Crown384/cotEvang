@@ -316,7 +316,7 @@
     // Check if service workers and push notifications are supported
 if ('serviceWorker' in navigator && 'PushManager' in window) {
   // Register the service worker
-  navigator.serviceWorker.register('/service-worker.js')
+  navigator.serviceWorker.register('/sw.js')
     .then(function(registration) {
       console.log('Service Worker registered');
       
@@ -358,7 +358,7 @@ function requestPermission() {
       .then(function(registration) {
         return registration.pushManager.subscribe({
           userVisibleOnly: true,
-          applicationServerKey: urlBase64ToUint8Array('YOUR_VAPID_PUBLIC_KEY')
+          applicationServerKey: urlBase64ToUint8Array('BNY1bMZmhx_qZQr5yAayy0gqIMGq1kS6DZBHcFg8PuJYWywt4LxD1ZiHsGak1nBwkyyY-NnLAQFB8IQNOJ00J1E')
         });
       });
   });

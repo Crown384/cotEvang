@@ -1,4 +1,4 @@
-require('./cronjob');
+norequire('./cronjob');
 const express = require('express');
 const cors = require('cors');
 const cloudinary = require('cloudinary').v2;

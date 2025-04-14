@@ -2,6 +2,7 @@ require('./cronjob');
 const express = require('express');
 const cors = require('cors');
 const cloudinary = require('cloudinary').v2;
+const webpush = require('web-push');
 
 const app = express();
 const PORT = 3000;
@@ -41,3 +42,21 @@ app.get('/excel-files', async (req, res) => {
 app.listen(PORT, () => {
     console.log(`Server running at http://localhost:${PORT}`);
 });
+
+// Set VAPID keys (you generate these once)
+const vapidKeys = {
+  publicKey: 'YOUR_VAPID_PUBLIC_KEY',
+  privateKey: 'YOUR_VAPID_PRIVATE_KEY'
+};
+
+webpush.setVapidDetails(
+  'mailto:your@email.com',
+  vapidKeys.publicKey,
+  vapidKeys.privateKey
+);
+
+// Send notification
+function sendNotification(subscription, payload) {
+  webpush.sendNotification(subscription, JSON.stringify(payload))
+    .catch(error => console.error('Error sending notification:', error));
+}

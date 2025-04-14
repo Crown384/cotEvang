@@ -220,11 +220,13 @@
       AllExcel Files
     </div>
   </div>
+  
+  <button class="button" type="submit" onclick="Notify()">Notify me</button>
 
    <!-- FOOTER -->
     <footer style="background-color: rosybrown; text-align: center;">
       <p>Developed by PAMA Inc</p>
-      <p>Copyright c 2025 Chapel of Transformation Ikole</p>
+      <p>Copyright &copy 2025 Chapel of Transformation Ikole</p>
     </footer>
 
 
@@ -295,6 +297,100 @@
     function logOut() {
       auth.signOut().then(() => alert("You logged out")).catch(err => alert(`${err.message}`));
     }
+  </script>
+  
+  <script type="text/javascript" charset="utf-8">
+    function Notify() {
+      Notification.requestPermission().then( perm => {
+        if (perm === "granted") {
+          const notfice = new Notification("Test Notification", {
+            body: "Hi testing notification",
+          });
+          
+        }
+      })
+    }
+  </script>
+  
+  <script>
+    // Check if service workers and push notifications are supported
+if ('serviceWorker' in navigator && 'PushManager' in window) {
+  // Register the service worker
+  navigator.serviceWorker.register('/service-worker.js')
+    .then(function(registration) {
+      console.log('Service Worker registered');
+      
+      // Request permission for notifications
+      return requestPermission();
+    })
+    .then(function(subscription) {
+      console.log('User is subscribed:', subscription);
+      
+      // Send the subscription to your server
+      if (subscription) {
+        sendSubscriptionToServer(subscription);
+      }
+    })
+    .catch(function(error) {
+      console.error('Service Worker registration failed:', error);
+    });
+} else {
+  console.warn('Push messaging is not supported');
+}
+
+function requestPermission() {
+  return new Promise(function(resolve, reject) {
+    const permissionResult = Notification.requestPermission(function(result) {
+      resolve(result);
+    });
+
+    if (permissionResult) {
+      permissionResult.then(resolve, reject);
+    }
+  })
+  .then(function(permissionResult) {
+    if (permissionResult !== 'granted') {
+      throw new Error('Permission not granted for Notification');
+    }
+    
+    // Get the subscription
+    return navigator.serviceWorker.ready
+      .then(function(registration) {
+        return registration.pushManager.subscribe({
+          userVisibleOnly: true,
+          applicationServerKey: urlBase64ToUint8Array('YOUR_VAPID_PUBLIC_KEY')
+        });
+      });
+  });
+}
+
+function sendSubscriptionToServer(subscription) {
+  // Here you would typically send the subscription to your backend
+  // Example using fetch:
+  return fetch('/api/save-subscription', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(subscription)
+  });
+}
+
+// Helper function to convert VAPID key
+function urlBase64ToUint8Array(base64String) {
+  const padding = '='.repeat((4 - base64String.length % 4) % 4);
+  const base64 = (base64String + padding)
+    .replace(/-/g, '+')
+    .replace(/_/g, '/');
+
+  const rawData = window.atob(base64);
+  const outputArray = new Uint8Array(rawData.length);
+
+  for (let i = 0; i < rawData.length; ++i) {
+    outputArray[i] = rawData.charCodeAt(i);
+  }
+  return outputArray;
+}
   </script>
 </body>
 

@@ -45,12 +45,12 @@ app.listen(PORT, () => {
 
 // Set VAPID keys (you generate these once)
 const vapidKeys = {
-  publicKey: 'YOUR_VAPID_PUBLIC_KEY',
-  privateKey: 'YOUR_VAPID_PRIVATE_KEY'
+  publicKey: 'BNY1bMZmhx_qZQr5yAayy0gqIMGq1kS6DZBHcFg8PuJYWywt4LxD1ZiHsGak1nBwkyyY-NnLAQFB8IQNOJ00J1E',
+  privateKey: 'gf00n0nSUacDf23nfoK6_FUAfSx_JlpI1XxPoJWFCIM'
 };
 
 webpush.setVapidDetails(
-  'mailto:your@email.com',
+  'mailto: crownstephen384@gmail.com',
   vapidKeys.publicKey,
   vapidKeys.privateKey
 );
@@ -60,3 +60,16 @@ function sendNotification(subscription, payload) {
   webpush.sendNotification(subscription, JSON.stringify(payload))
     .catch(error => console.error('Error sending notification:', error));
 }
+
+// Example: Sending a notification from your server
+const payload = {
+  title: "New Message!",  // Notification title
+  body: "You have a new notification!",  // Notification body
+  icon: "/images/icon.png",  // Optional icon
+  badge: "/images/badge.png",  // Optional badge
+  url: "/notifications"  // URL to open when clicked
+};
+
+// Send to all subscribed users (in a real app, you'd loop through subscriptions)
+webpush.sendNotification(subscription, JSON.stringify(payload))
+  .catch(err => console.error("Failed to send:", err));

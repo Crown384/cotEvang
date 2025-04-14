@@ -1,6 +1,5 @@
 const freshersForm = document.querySelector('#freshersForm');
 const uploadBtnForFreshers = document.querySelector('#uploadExcelFresher');
-
 const allExcelFiles = document.querySelector('#allExcelFiles');
 
 freshersForm.addEventListener('submit', e => {
@@ -20,9 +19,7 @@ freshersForm.addEventListener('submit', e => {
   alert("Saved offline");
   
   freshersForm.reset();
-})
-
-
+});
 
 function downloadExcel() {
   const data = JSON.parse(localStorage.getItem("freshersData")) || [];
@@ -33,13 +30,11 @@ function downloadExcel() {
   XLSX.writeFile(workbook, "cot_fresher.xlsx");
 }
 
-
-// upload to cloduinary wigh userUID
-
+// upload to cloudinary with userUID
 auth.onAuthStateChanged(user => {
   if(user) {
     uploadBtnForFreshers.addEventListener('click', () => {
-      uploadFresherFile(user.uid)
+      uploadFresherFile(user.uid);
     });
     fetchExcelFiles();
     setUI(user);
@@ -47,8 +42,7 @@ auth.onAuthStateChanged(user => {
     alert("no user logged in");
     setUI();
   }
-})
-
+});
 
 function uploadFresherFile(userUID) {
   const data = JSON.parse(localStorage.getItem("freshersData")) || [];
@@ -74,7 +68,7 @@ function uploadFresherFile(userUID) {
   formData.append("file", fileBlob, "cot_fresher.xlsx");
   formData.append("upload_preset", UPLOAD_PRESET); // Replace with your Cloudinary preset
   formData.append("public_id", userUID); // Set the user's UID as the file name
-  formData.append("folder", "EvangApp")
+  formData.append("folder", "EvangApp");
 
   // Upload to Cloudinary
   fetch(CLOUDINARY_URL, {
@@ -98,35 +92,56 @@ function uploadFresherFile(userUID) {
 
 async function fetchExcelFiles() {
   try {
-    const res = await fetch('http://localhost:3000/excel-files');
+    const res = await fetch('https://cotevangbackend.onrender.com/excel-files');
     const files = await res.json();
 
     const container = document.getElementById('allExcelFiles');
     container.innerHTML = '';
 
-    // Load docs
-    db.collection('users').get().then(snapshot => {
-      let html = '';
-      snapshot.docs.forEach(doc => {
-        console.log(doc.data());
-        html += ` <div>name: ${doc.data().name}</div>
-          <div>phone: ${doc.data().phone}</div>`
-      })
-      // return html;
-      container.innerHTML += html;
-    })
-
     if (files.length === 0) {
       container.textContent = 'No Excel files found.';
       return;
-    } else {
-      files.forEach(file => {
-        let link = `<a href="${file.url}" target="_blank">${file.fileName}</a><hr>`;
-        container.innerHTML += link;
-        // container.appendChild(document.createElement('hr'));
-      })
-    };
+    }
 
+    for (const file of files) {
+      const card = document.createElement('div');
+      card.style.border = '1px solid #ccc';
+      card.style.borderRadius = '8px';
+      card.style.padding = '10px';
+      card.style.marginBottom = '10px';
+      card.style.background = '#f9f9f9';
+
+      const link = document.createElement('a');
+      link.href = file.url;
+      link.textContent = file.fileName;
+      link.target = '_blank';
+      link.style.fontWeight = 'bold';
+      card.appendChild(link);
+
+      try {
+        const cloudinaryFileName = file.fileName;
+        const userUid = cloudinaryFileName.replace(/\.xlsx$/, ''); // Removes ".xlsx" at
+        const snapshot = await db.collection('users').doc(userUid).get();
+        console.log(file.fileName);
+        const data = snapshot.data();
+
+        if (data) {
+          const userInfo = document.createElement('div');
+          userInfo.innerHTML = `
+            <div>Name: ${data.name}</div>
+            <div>Phone: ${data.phone}</div>
+          `;
+          card.appendChild(userInfo);
+        } else {
+          card.innerHTML += `<div style="color: red;">User data not found</div>`;
+        }
+      } catch (err) {
+        card.innerHTML += `<div style="color: red;">Error loading user data</div>`;
+        console.error(`Error fetching data for ${file.fileName}: ${err.message}`);
+      }
+
+      container.appendChild(card);
+    }
   } catch (err) {
     document.getElementById('allExcelFiles').textContent = 'Error loading files.';
     console.error(err);
@@ -143,14 +158,32 @@ const setUI = (user) => {
       userIF.style.display = 'block';
     });
     outsidersInfo.forEach(userIF => {
-      userIF.style.display = 'none'
+      userIF.style.display = 'none';
     });
   } else {
     userInfo.forEach(userIF => {
-      userIF.style.display = 'none'
+      userIF.style.display = 'none';
     });
     outsidersInfo.forEach(userIF => {
-      userIF.style.display = 'block'
+      userIF.style.display = 'block';
     });
   }
-}
+};
+
+const adminInfo = document.querySelectorAll(".admin");
+auth.onAuthStateChanged(user => {
+  if (user) {
+    console.log(user.uid);
+    
+    db.collection('users').doc(user.uid).get().then(snap => {
+      const isadmin = snap.data().isAdmin;
+      console.log(isadmin);
+      
+      if(isadmin) {
+        adminInfo.forEach(adminS => {
+          adminS.classList.add('showAdmin');
+        });
+      }
+    });
+  }
+});

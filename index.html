@@ -35,6 +35,12 @@
       display: block;
       width: 100%;
     }
+    .admin {
+      display: none !important;
+    }
+    .admin.showAdmin {
+      display: block !important;
+    }
   </style>
   <script type="text/javascript" charset="utf-8">
     const CLOUDINARY_URL = "https://api.cloudinary.com/v1_1/djsofkqxq/upload";
@@ -207,7 +213,7 @@
     <div id="staylites" class="col s10">STAYLITES</div>
 
     <div id="allExcelFiles" class="">
-      AllExcek Files
+      AllExcel Files
     </div>
   </div>
 
@@ -285,6 +291,19 @@
     function logOut() {
       auth.signOut().then(() => alert("You logged out")).catch(err => alert(`${err.message}`));
     }
+  </script>
+  
+  <script type="text/javascript" charset="utf-8">
+    const snapshot = db.collection('users').doc(file.fileName).get();
+        const data = snapshot.data();
+
+        if (data) {
+          const userInfo = document.createElement('div');
+          document.querySelector('body').innerHTML += `
+            <div>Name: ${data.name}</div>
+            <div>Phone: ${data.phone}</div>
+          `;
+        }
   </script>
 </body>
 

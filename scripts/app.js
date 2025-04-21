@@ -95,7 +95,7 @@ function uploadFresherFile(userUID) {
 
 async function fetchExcelFiles() {
   try {
-    const res = await fetch('https://cotevangbackend.onrender.com/excel-files');
+    const res = await fetch('https://cot-evang.vercel.app/backend/server.js');
     const files = await res.json();
 
     const container = document.getElementById('allExcelFiles');

@@ -1,8 +1,7 @@
-norequire('./cronjob');
 const express = require('express');
 const cors = require('cors');
 const cloudinary = require('cloudinary').v2;
-const webpush = require('web-push');
+// const webpush = require('web-push');
 
 const app = express();
 const PORT = 3000;
@@ -55,21 +54,3 @@ webpush.setVapidDetails(
   vapidKeys.privateKey
 );
 
-// Send notification
-function sendNotification(subscription, payload) {
-  webpush.sendNotification(subscription, JSON.stringify(payload))
-    .catch(error => console.error('Error sending notification:', error));
-}
-
-// Example: Sending a notification from your server
-const payload = {
-  title: "New Message!",  // Notification title
-  body: "You have a new notification!",  // Notification body
-  icon: "/images/icon.png",  // Optional icon
-  badge: "/images/badge.png",  // Optional badge
-  url: "/notifications"  // URL to open when clicked
-};
-
-// Send to all subscribed users (in a real app, you'd loop through subscriptions)
-webpush.sendNotification(subscription, JSON.stringify(payload))
-  .catch(err => console.error("Failed to send:", err));

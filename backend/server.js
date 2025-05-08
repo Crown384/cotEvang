@@ -47,10 +47,3 @@ const vapidKeys = {
   publicKey: 'BNY1bMZmhx_qZQr5yAayy0gqIMGq1kS6DZBHcFg8PuJYWywt4LxD1ZiHsGak1nBwkyyY-NnLAQFB8IQNOJ00J1E',
   privateKey: 'gf00n0nSUacDf23nfoK6_FUAfSx_JlpI1XxPoJWFCIM'
 };
-
-webpush.setVapidDetails(
-  'mailto: crownstephen384@gmail.com',
-  vapidKeys.publicKey,
-  vapidKeys.privateKey
-);
-

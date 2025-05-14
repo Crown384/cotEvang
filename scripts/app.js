@@ -121,7 +121,7 @@ async function fetchExcelFiles() {
     }
   } catch (err) {
     document.getElementById('allExcelFiles').textContent = 'Error loading files.';
-    console.error(err);
+    //console.error(err);
   }
 }
 

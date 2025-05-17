@@ -59,9 +59,10 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'Segoe UI', sans-serif;
+
 }
-.general {height: 100vh; width: 100%;}
-.box {position: fixed; bottom: 0px; height: 50vh; border-radius: 50px 50px 0 0; background-color: green; width: 100vw; display: flex; justify-content: center; align-items: center;}
+.general {height: 100vh; width: 100%; color: whitesmoke;}
+.box {position: fixed; bottom: 0px; height: 50vh; border-radius: 50px 50px 0 0; background-color: #104500; width: 100vw; display: flex; justify-content: center; align-items: center;}
 .action {width:60vw; text-align: center; display: grid; gap: 10px;}
 
 button {
@@ -76,15 +77,15 @@ button {
 
 .signup, .btn-outline {
   background-color: transparent;
-  border: 1px solid #f1c40f;
-  color: black;
+  border: 1px solid #D8A500;
   padding: 1rem 0;
+  color: #333;
 }
 
 .signin, .btn-fill {
-  background-color: #f1c40f;
-  color: black;
+  background-color: #D8A500;
   padding: 1rem 0;
+  color: #fff;
 }
 .inOutContainer {width: 85%; place-self: center;}
 .verse {padding: 12px;}
@@ -92,15 +93,8 @@ button {
 input {
   border-bottom-width: 0px;
 }
-    * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Segoe UI', sans-serif;
-}
 
 body {
-  background-color: #1f1f1f;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -118,13 +112,11 @@ body {
 
 h3 {
   margin-bottom: 1rem;
-  color: #222;
 margin-top: 1.5rem;
 }
 
 .verse-box {
-  background-color: #1e4d2b;
-  color: white;
+  background-color: #104500;
   padding: 0.5rem;
   border-radius: 10px;
   margin-bottom: 1.5rem;
@@ -137,11 +129,13 @@ justify-content: center;
 }
 
 .verse-reference {
+  color: #ECFFE6;
   font-weight: bold;
   font-size: 1.5rem;
 }
 
 .verse-text {
+  color: #ECFFE6;
   font-size: 1.5rem;
   margin-top: 0.5rem;
 }
@@ -233,13 +227,16 @@ input[type="password"] {
 
   <!-- NON USERS -->
    <section class="general logged-out">
-    <div class="box">
+     <div style="width: 100%; display: flex; justify-content: center; align-items: center; margin-top: 2rem;">
+       <img src="/assests/cotlogo.png" alt="cot logo" width="75%" height="25%">
+     </div>
+    <div class="box" style="color: whitesmoke;">
       <div class="action">
         <h3>WELCOME TO COT EVANGELISM APP</h3>
         <h6>READ, RECORD, FOLLOW-UP</h6>
         <div class="buttons">
-          <button class="signup" onclick="signUp()">SIGN UP</button>
           <button class="signin" onclick="signIn()">SIGN IN</button>
+          <button class="signup" onclick="signUp()" style="color: #ffffff;">SIGN UP</button>
         </div>
       </div>
     </div>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sign In</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  background-color: #1f1f1f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.container {
+  background-color: #e8f5e9;
+  padding: 2rem;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+h2 {
+  margin-bottom: 1rem;
+  color: #222;
+}
+
+.verse-box {
+  background-color: #1e4d2b;
+  color: white;
+  padding: 1rem;
+  border-radius: 10px;
+  margin-bottom: 1.5rem;
+}
+
+.verse-reference {
+  font-weight: bold;
+}
+
+.verse-text {
+  font-size: 1rem;
+  margin-top: 0.5rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-weight: bold;
+  color: #222;
+}
+
+.input-wrapper {
+  display: flex;
+  align-items: center;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+}
+
+.input-wrapper .icon {
+  margin-right: 0.5rem;
+}
+
+input[type="email"],
+input[type="password"] {
+  border: none;
+  outline: none;
+  width: 100%;
+  font-size: 1rem;
+  background: transparent;
+}
+
+.sign-in-btn {
+  background-color: #d4a30b;
+  color: white;
+  border: none;
+  padding: 0.75rem;
+  width: 100%;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.sign-in-btn:hover {
+  background-color: #b8860b;
+}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="login-card">
+      <h2>Welcome Back</h2>
+      <div class="verse-box">
+        <p class="verse-reference">Mark 16:15</p>
+        <p class="verse-text">
+          "He said to them, 'Go into all the world and preach the gospel to all creation.'"
+        </p>
+      </div>
+
+      <form>
+        <label for="email">Email Address</label>
+        <div class="input-wrapper">
+          <span class="icon">✉️</span>
+          <input type="email" id="email" placeholder="JohnDoe123@gmail.com" required />
+        </div>
+
+        <label for="password">Password</label>
+        <div class="input-wrapper">
+          <span class="icon">🗝️</span>
+          <input type="password" id="password" placeholder="***********" required />
+        </div>
+
+        <button type="submit" class="sign-in-btn">Sign In</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

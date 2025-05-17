@@ -19,23 +19,30 @@ cloudinary.config({
 // Endpoint to retrieve Excel files from the 'ExcelFiles' folder
 app.get('/excel-files', async (req, res) => {
     try {
+    const folders = ['EvangApp', 'EvangAppStaylites'];
+    const allFiles = [];
+    
+    for (const folder of folders) {
         const result = await cloudinary.search
-            .expression('resource_type:raw AND folder:EvangApp')
+            .expression(`resource_type:raw AND folder:${folder}`)
             .max_results(100)
             .execute();
-
+        
         const excelFiles = result.resources
             .filter(file => file.format === 'xlsx' || file.format === 'xls')
             .map(file => ({
                 fileName: file.filename,
                 url: file.secure_url
             }));
-
-        res.status(200).json(excelFiles);
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: 'Failed to fetch Excel files from Cloudinary' });
+        
+        allFiles.push(...excelFiles);
     }
+    
+    res.status(200).json(allFiles);
+} catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Failed to fetch Excel files from Cloudinary' });
+}
 });
 
 app.listen(PORT, () => {

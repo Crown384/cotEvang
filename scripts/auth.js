@@ -18,8 +18,8 @@ signupForm.addEventListener('submit', e => {
     });
   }).then (() => {
     signupForm.reset();
-    const modalInstance = 
-    M.Modal.getInstance(document.querySelector('#modal-signup')).close();
+  //  const modalInstance = 
+   // M.Modal.getInstance(document.querySelector('#modal-signup')).close();
   }).catch(err => {
     console.log(err.message)
     M.toast({html: `${err.message}`});
@@ -36,7 +36,7 @@ loginForm.addEventListener('submit', e => {
     //alert('you logged in');
     M.toast({html: `You logged In`});
     loginForm.reset();
-     const modalInstance = 
-    M.Modal.getInstance(document.querySelector('#modal-login')).close();
+     //const modalInstance = 
+    //M.Modal.getInstance(document.querySelector('#modal-login')).close();
   }).catch(err => alert(err.message));
 })

@@ -52,18 +52,162 @@
       top: 10px !important;
       bottom: 500px !important;
     }
+    .hidden {display: none;}
+    
+    * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+.general {height: 100vh; width: 100%;}
+.box {position: fixed; bottom: 0px; height: 50vh; border-radius: 50px 50px 0 0; background-color: green; width: 100vw; display: flex; justify-content: center; align-items: center;}
+.action {width:60vw; text-align: center; display: grid; gap: 10px;}
+
+button {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.signup, .btn-outline {
+  background-color: transparent;
+  border: 1px solid #f1c40f;
+  color: black;
+  padding: 1rem 0;
+}
+
+.signin, .btn-fill {
+  background-color: #f1c40f;
+  color: black;
+  padding: 1rem 0;
+}
+.inOutContainer {width: 85%; place-self: center;}
+.verse {padding: 12px;}
+
+input {
+  border-bottom-width: 0px;
+}
+    * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  background-color: #1f1f1f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.container, .signin-container, .signup-container {
+  background-color: #e8f5e9;
+  padding: 2rem;
+  border-radius: 8px;
+  width: 100vw;
+  height: 100svh;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+h3 {
+  margin-bottom: 1rem;
+  color: #222;
+margin-top: 1.5rem;
+}
+
+.verse-box {
+  background-color: #1e4d2b;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 10px;
+  margin-bottom: 1.5rem;
+  padding: 12vw 8vw;
+  height: 60vw;
+  display: flex;
+justify-content: center;
+  flex-direction: column;
+  
+}
+
+.verse-reference {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.verse-text {
+  font-size: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-weight: bold;
+  color: #222;
+  font-size: 1em;
+}
+
+.input-wrapper {
+  display: flex;
+  align-items: center;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+}
+
+.input-wrapper .icon {
+  margin-right: 0.5rem;
+}
+
+input[type="email"],
+input[type="password"] {
+  border: none;
+  outline: none;
+  width: 100%;
+  font-size: 1rem;
+  background: transparent;
+}
+
+.sign-in-btn {
+  background-color: #d4a30b;
+  color: white;
+  border: none;
+  padding: 0.75rem;
+  width: 100%;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.sign-in-btn:hover {
+  background-color: #b8860b;
+}
+.inactive {color: grey;}
+.hidden {display: none;}
+
   </style>
   <script type="text/javascript" charset="utf-8">
     const CLOUDINARY_URL = "https://api.cloudinary.com/v1_1/djsofkqxq/upload";
     const UPLOAD_PRESET = "acadcotikole"; // If using unsigned upload
   </script>
+  
   <title>Evangelism App</title>
 </head>
 
 <body class="">
 
   <!-- NAVBAR -->
-  <nav class="z-depth-0 transparent">
+  <nav class="z-depth-0 transparent hidden">
     <div class="nav-wrapper container">
       <a href="#" class="brand-logo">
         <!-- <img src="" style="width: 180px; margin-top: 10px;"> 
@@ -88,150 +232,203 @@
   </nav>
 
   <!-- NON USERS -->
-   <div class="general logged-out">
-    <div class="fireAnimation" style="display: flex; justify-content: center; align-items: center;">
-      <img src="assests/fire.png" width="100px" alt="fire img">
+   <section class="general logged-out">
+    <div class="box">
+      <div class="action">
+        <h3>WELCOME TO COT EVANGELISM APP</h3>
+        <h6>READ, RECORD, FOLLOW-UP</h6>
+        <div class="buttons">
+          <button class="signup" onclick="signUp()">SIGN UP</button>
+          <button class="signin" onclick="signIn()">SIGN IN</button>
+        </div>
+      </div>
     </div>
-    <h3 style="text-align: center; margin-bottom: 1rem;">Evangelism is by FIRE <br> therefore get Fire</h3>
-   </div>
+   </section>
+   
+   <!-- SIGNIN & SIGNUP-->
+<section id="signInOut" class="logged-out">
+  <div class="signin-container hidden">
+    <div class="login-card">
+      <h3>Welcome Back</h3>
+      <div class="verse-box" style="margin-bottom: 2rem;">
+        <p class="verse-reference">Mark 16:15</p>
+        <p class="verse-text">
+          "He said to them, 'Go into all the world and preach the gospel to all creation.'"
+        </p>
+      </div>
 
-  <!-- MODALS -->
-  <!-- SIGN UP MODAL -->
-  <div id="modal-signup" class="modal">
-    <div class="modal-content">
-      <h4>Sign up</h4><br />
-      <form id="signup-form">
-
-        <div class="input-field">
-          <input type="email" id="email" required />
-          <label for="email">
-            <span>Email Address</span>
-            <i class="material-symbols-outlined right">mail</i>
-          </label>
-        </div>
-
-        <div class="input-field">
-          <input type="password" id="password" required />
-          <label for="password">
-            <span>Password</span>
-            <i class="material-symbols-outlined right">key</i>
-          </label>
-        </div>
-
-
-        <div class="input-field">
-          <input type="text" id="username" required />
-          <label for="username">
-            <span>Name</span>
-            <i class="material-symbols-outlined right">person</i>
-          </label>
-        </div>
-
-        <div class="input-field">
-          <input type="tel" pattern="[0-9]{11}" id="signup-phone" required />
-          <label for="signup-phone">
-            Phone
-            <i class="material-symbols-outlined right">phone</i>
-          </label>
-        </div>
-
-        <div class="input-field">
-          <input type="number" id="signup-whatsapp" required />
-          <label for="signup-whatsapp">Whatsapp</label>
-        </div>
-
-
-        <button class="btn teal darken-2 z-depth-0" style="width: 100%">Sign up</button>
-      </form>
-    </div>
-  </div>
-
-  <!-- LOGIN MODAL -->
-  <div id="modal-login" class="modal">
-    <div class="modal-content">
-      <h4>Login</h4><br />
       <form id="login-form">
-        <div class="input-field">
-          <input type="email" id="login-email" required />
-          <label for="login-email">Email address<i class="material-symbols-outlined right">mail</i></label>
+        <label for="email">Email Address</label>
+        <div class="input-wrapper">
+          <span class="icon">✉️</span>
+          <input type="email" id="login-email" placeholder="JohnDoe123@gmail.com" required />
         </div>
-        <div class="input-field">
-          <input type="password" id="login-password" required />
-          <label for="login-password">
-            Your password
-            <i class="material-symbols-outlined right">key</i>
-          </label>
+
+        <label for="password">Password</label>
+        <div class="input-wrapper">
+          <span class="icon material-symbols-outlined">password</span>
+          <input type="password" id="login-password" placeholder="***********" required />
         </div>
-        <button class="btn teal darken-2 z-depth-0" style="width: 100%">Login</button>
+
+        <button type="submit" class="btn-fill">SIGN IN</button>
       </form>
-    </div>
-  </div>
-
-
-  <div class="row logged-in">
-    <div class="col s12">
-      <ul class="tabs">
-        <li class="tab col s6 grey-text"><a class="active" href="#freshers">Freshers</a></li>
-        <li class="tab col s6 teal-text"><a href="#staylites">Staylites 2</a></li>
-        <li class="tab col s6 teal-text admin"><a href="#allExcelFiles">ALL</a></li>
-      </ul>
-    </div>
-
-    <div id="freshers" class="col s10 blue-text">
-      <form id="freshersForm">
-
-        <div class="input-field">
-          <input type="text" id="name" required />
-          <label for="name">Name</label>
-        </div>
-
-        <div class="input-field">
-          <input type="text" id="dept" required />
-          <label for="dept">Department</label>
-        </div>
-
-        <div class="input-field">
-          <input type="text" id="address" required />
-          <label for="address">Address</label>
-        </div>
-
-        <div class="input-field">
-          <input type="tel" pattern="[0-9]{11}" id="phone" required />
-          <label for="phone">Phone</label>
-        </div>
-
-        <button class="btn teal darken-2 z-depth-0 col s12" type="submit">
-          Save Offline
-          <i class="material-symbols-outlined">save</i>
-        </button>
-
-        <a href="#" id="uploadExcelFresher" class="btn teal darken-2 z-depth-0 col s12 " style="margin-top: 0.5rem">
-          <span>UPLOAD</span>
-          <i class="material-symbols-outlined">upload</i>
-        </a>
-
-        <div style="height: 0.03rem; margin-top: 0.7rem" class="grey col s12"></div>
-
-        <a href="#" onclick="downloadExcel()" class="btn teal darken-2 z-depth-0 col s12 " style="margin-top: 0.5rem">
-          <span>download</span>
-          <i class="material-symbols-outlined right">download</i>
-        </a>
-      </form>
-    </div>
-
-
-
-    <div id="staylites" class="col s10">STAYLITES</div>
-
-    <div id="allExcelFiles" class="">
-      AllExcel Files
+      
+      <span style="display: block; text-align: center; width: 100%;"> or </span>
+      <button class="btn-outline" onclick="signUp()">SIGN UP</button>
     </div>
   </div>
   
-  <button class="button" type="submit" onclick="fetchExcelFiles()">Notify me</button>
+  
+  <div class="signup-container hidden">
+    
+    <h3>Get Started</h3>
+
+    <form id="signup-form">
+        <label for="username">Full Name</label>
+  <div class="input-wrapper">
+    <span class="icon">👤</span>
+    <input type="text" id="username" required placeholder="John Doe" />
+  </div>
+  
+  <label for="email">Email Address</label>
+  <div class="input-wrapper">
+    <span class="icon">✉️</span>
+    <input type="email" id="email" required placeholder="example@email.com" />
+  </div>
+
+  <label for="password">Password</label>
+  <div class="input-wrapper">
+    <span class="icon">🗝️</span>
+    <input type="password" id="password" required placeholder="********" />
+  </div>
+
+  <label for="signup-phone">Phone</label>
+  <div class="input-wrapper">
+    <span class="icon">📞</span>
+    <input type="tel" id="signup-phone" pattern="[0-9]{11}" required placeholder="08012345678" />
+  </div>
+
+  <label for="signup-whatsapp">WhatsApp</label>
+  <div class="input-wrapper">
+    <span class="icon">💬</span>
+    <input type="number" id="signup-whatsapp" required placeholder="08012345678" />
+  </div>
+
+  <button type="submit" class="btn-fill">Sign Up</button>
+    <span style="display: block; text-align: center; width: 100%;"> or </span>
+      <button class="btn-outline" onclick="signIn()">SIGN IN</button>
+</form>
+
+  </div>
+  
+</section>
+
+<script>
+  function signIn() {
+      //console.log('hello')
+      document.querySelector('.general').style.display = "none";
+      document.querySelector('#signInOut').classList.remove('hidden');
+      document.querySelector('.signin-container').classList.remove('hidden');
+      document.querySelector('.signup-container').classList.add('hidden');
+  }
+  
+  function signUp() {
+    document.querySelector('.general').style.display = "none";
+    document.querySelector('#signInOut').classList.remove('hidden');
+    document.querySelector('.signup-container').classList.remove('hidden');
+    document.querySelector('.signin-container').classList.add('hidden');
+  }
+</script>
+  
+  <div class="logged-in">
+    
+  <div class="container">
+    <span class="btn-fill" onclick="logOut()">LOGOUT</span>
+    <div style="width: 100%; display: flex; justify-content: space-between; margin-bottom: 2rem;">
+      <h4 class="triggerFresh" onclick="freshersFuc()">FRESHERS</h4>
+      <h4 class="inactive triggerStay" onclick="staylitesFuc()">STAYLITES</h4>
+      <h4 class="inactive triggerAllEcelFiles admin" onclick="excelFilesFuc()">FILES</h4>
+    </div>
+
+    <form id="freshersForm">
+  <label for="name">Full Name</label>
+  <div class="input-wrapper">
+    <span class="icon"></span>
+    <input type="text" id="name" required />
+  </div>
+  
+  <label for="dept">Department</label>
+  <div class="input-wrapper">
+    <span class="icon"></span>
+    <input type="text" id="dept" required />
+  </div>
+  
+    <label for="address">Address</label>
+  <div class="input-wrapper">
+    <span class="icon"></span>
+    <input type="text" id="address" required />
+  </div>
+
+  <label for="phone">Phone</label>
+  <div class="input-wrapper">
+    <span class="icon"></span>
+    <input type="tel" id="phone" pattern="[0-9]{11}" required />
+  </div>
+  <span>
+      <button type="submit" class="btn-fill">SAVE OFFLINE</button>
+      <button class="btn-outline" onclick="downloadExcel()">DOWNLOAD</button>
+  </span>
+    <span style="display: block; text-align: center; width: 100%;">______</span>
+      <button class="btn-fill" id="uploadExcelFresher">UPLOAD</button>
+</form>
+    <form id="staylitesForm" class="hidden">
+  <label for="name">Full Name</label>
+  <div class="input-wrapper">
+    <span class="icon"></span>
+    <input type="text" id="name" required />
+  </div>
+  
+  <label for="dept">Department</label>
+  <div class="input-wrapper">
+    <span class="icon"></span>
+    <input type="text" id="dept" required />
+  </div>
+  
+    <label for="level">Level</label>
+  <div class="input-wrapper">
+    <span class="icon"></span>
+    <input type="number" id="level" required />
+  </div>
+  
+    <label for="address">Address</label>
+  <div class="input-wrapper">
+    <span class="icon"></span>
+    <input type="text" id="address" required />
+  </div>
+
+  <label for="phone">Phone</label>
+  <div class="input-wrapper">
+    <span class="icon"></span>
+    <input type="tel" id="phone" pattern="[0-9]{11}" required />
+  </div>
+
+ <span>
+      <button type="submit" class="btn-fill">SAVE OFFLINE</button>
+      <button class="btn-outline" onclick="downloadExcelStay()">DOWNLOAD</button>
+  </span>
+    <span style="display: block; text-align: center; width: 100%;">_____________</span>
+      <button class="btn-fill" id="uploadExcelStaylite" onclick="">UPLOAD</button>
+</form>
+
+    <div id="allExcelFiles" class="admin hidden"></div>
+  </div>
+  </div>
+  
+  
+  <button class="hidden button" type="submit" onclick="fetchExcelFiles()">Notify me</button>
 
    <!-- FOOTER -->
-    <footer style="background-color: rosybrown; text-align: center;">
+    <footer class="hidden" style="background-color: rosybrown; text-align: center;">
       <p>Developed by PAMA Inc</p>
       <p>Copyright &copy 2025 Chapel of Transformation Ikole</p>
     </footer>
@@ -281,32 +478,47 @@
   <script src="scripts/index.js"></script>
   <script src="scripts/app.js"></script>
   
-  <script type="text/javascript" charset="utf-8">
-    async function loadExcelFiles() {
-  const res = await fetch('https://<region>-<project-id>.cloudfunctions.net/getExcelFiles');
-  const files = await res.json();
-
-  const container = document.getElementById('excel-container');
-  container.innerHTML = '';
-
-  files.forEach(file => {
-    const link = document.createElement('a');
-    link.href = file.url;
-    link.textContent = file.fileName;
-    link.target = '_blank';
-    container.appendChild(link);
-    container.appendChild(document.createElement('br'));
-  });
-}
+  <script>
+    
   </script>
   
   <script>
     function logOut() {
       auth.signOut().then(() => alert("You logged out")).catch(err => alert(`${err.message}`));
     }
+    
+    function freshersFuction() {
+      console.log('fresher');
+      document.querySelector('#freshersForm').classList.remove('hidden');
+      document.querySelector('#allExcelFiles').classList.add('hidden');
+      document.querySelector('#staylitesForm').classList.add('hidden')
+      document.querySelector('.triggerFresh').classList.remove('inactive');
+      document.querySelector('.triggerStay').classList.add('inactive');
+      document.querySelector('.triggerAllEcelFiles').classList.add('inactive');
+    }
+    
+    function staylitesFuc() {
+      document.querySelector('#freshersForm').classList.add('hidden');
+      document.querySelector('#allExcelFiles').classList.add('hidden');
+      document.querySelector('#staylitesForm').classList.remove('hidden');
+      document.querySelector('.triggerFresh').classList.add('inactive');
+      document.querySelector('.triggerStay').classList.remove('inactive');
+      document.querySelector('.triggerAllEcelFiles').classList.add('inactive');
+    }
+    
+    function excelFilesFuc() {
+      document.querySelector('#freshersForm').classList.add('hidden');
+      document.querySelector('#allExcelFiles').classList.remove('hidden');
+      document.querySelector('#staylitesForm').classList.add('hidden');
+      document.querySelector('.triggerFresh').classList.add('inactive');
+      document.querySelector('.triggerStay').classList.add('inactive');
+      document.querySelector('.triggerAllEcelFiles').classList.remove('inactive');
+}
+    }
+    
   </script>
   
-  <script type="text/javascript" charset="utf-8">
+  <script>
     function Notify() {
       Notification.requestPermission().then( perm => {
         if (perm === "granted") {

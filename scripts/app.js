@@ -1,4 +1,6 @@
 const freshersForm = document.querySelector('#freshersForm');
+const staylitesForm = document.querySelector('#staylitesForm');
+const uploadBtnForStaylites = document.querySelector('#uploadExcelStaylite');
 const uploadBtnForFreshers = document.querySelector('#uploadExcelFresher');
 const allExcelFiles = document.querySelector('#allExcelFiles');
 const userInfo = document.querySelectorAll('.logged-in');
@@ -24,14 +26,41 @@ freshersForm.addEventListener('submit', e => {
   M.toast({ html: "Saved Offline" });
   freshersForm.reset();
 });
+staylitesForm.addEventListener('submit', e => {
+  e.preventDefault();
+
+  const data = {
+    name: staylitesForm.name?.value,
+    department: staylitesForm.dept?.value,
+    address: staylitesForm.address?.value,
+    phone: staylitesForm.phone?.value,
+    level: staylitesForm.level?.value
+  };
+
+  let savedData = JSON.parse(localStorage.getItem('staylitesData')) || [];
+  savedData.push(data);
+  localStorage.setItem('staylitesData', JSON.stringify(savedData));
+
+  M.toast({ html: "Saved Offline" });
+  staylitesForm.reset();
+});
 
 // Convert local data to Excel and download
 function downloadExcel() {
-  const data = JSON.parse(localStorage.getItem("freshersData")) || [];
+  const data = JSON.parse(localStorage.getItem("staylitesData")) || [];
   const worksheet = XLSX.utils.json_to_sheet(data);
   const workbook = XLSX.utils.book_new();
   XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
   XLSX.writeFile(workbook, "cot_fresher.xlsx");
+}
+
+function downloadExcelStay() {
+  console.log('hi')
+  const data = JSON.parse(localStorage.getItem("freshersData")) || [];
+  const worksheet = XLSX.utils.json_to_sheet(data);
+  const workbook = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
+  XLSX.writeFile(workbook, "cot_staylites.xlsx");
 }
 
 // Upload Excel to Cloudinary
@@ -52,6 +81,43 @@ function uploadFresherFile(userUID) {
   formData.append("upload_preset", UPLOAD_PRESET); // Define this globally
   formData.append("public_id", `${userUID}_${Date.now()}`);
   formData.append("folder", "EvangApp");
+
+  fetch(CLOUDINARY_URL, {
+    method: "POST",
+    body: formData
+  })
+    .then(response => response.json())
+    .then(data => {
+      if (data.secure_url) {
+        M.toast({ html: `File Uploaded Successfully` });
+        fetchExcelFiles(); // Optional: Refresh list
+      } else {
+        console.log("Upload error:", data);
+        M.toast({ html: `Upload failed` });
+      }
+    })
+    .catch(error => {
+      console.error("Upload error:", error);
+      M.toast({ html: `Upload failed` });
+    });
+}
+function uploadaStayliteFile(userUID) {
+  const data = JSON.parse(localStorage.getItem("staylitesData")) || [];
+  if (data.length === 0) {
+    return alert("No data found to upload.");
+  }
+
+  const worksheet = XLSX.utils.json_to_sheet(data);
+  const workbook = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
+  const excelBuffer = XLSX.write(workbook, { bookType: "xlsx", type: "array" });
+  const fileBlob = new Blob([excelBuffer], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
+
+  const formData = new FormData();
+  formData.append("file", fileBlob, "cot_staylites.xlsx");
+  formData.append("upload_preset", UPLOAD_PRESET); // Define this globally
+  formData.append("public_id", `${userUID}_${Date.now()}`);
+  formData.append("folder", "EvangAppStaylites");
 
   fetch(CLOUDINARY_URL, {
     method: "POST",
@@ -132,6 +198,8 @@ const setUI = (user) => {
 
   userInfo.forEach(el => el.style.display = show);
   outsidersInfo.forEach(el => el.style.display = hide);
+  //outsidersInfo.forEach((el) => el.classList.remove('hidden');
+  console.log('hello');
 };
 
 // Unified auth listener
@@ -139,6 +207,7 @@ auth.onAuthStateChanged(user => {
   if (user) {
     setUI(user);
     uploadBtnForFreshers.addEventListener('click', () => uploadFresherFile(user.uid));
+    uploadBtnForStaylites.addEventListener('click', () => uploadFresherFile(user.uid));
     fetchExcelFiles();
 
     // Check admin

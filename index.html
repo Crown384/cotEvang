@@ -482,12 +482,12 @@ input[type="password"] {
     
   </script>
   
-  <script>
+  <script defer>
     function logOut() {
       auth.signOut().then(() => alert("You logged out")).catch(err => alert(`${err.message}`));
     }
     
-    function freshersFuction() {
+    function freshersFuc() {
       console.log('fresher');
       document.querySelector('#freshersForm').classList.remove('hidden');
       document.querySelector('#allExcelFiles').classList.add('hidden');
@@ -514,7 +514,6 @@ input[type="password"] {
       document.querySelector('.triggerStay').classList.add('inactive');
       document.querySelector('.triggerAllEcelFiles').classList.remove('inactive');
 }
-    }
     
   </script>
   

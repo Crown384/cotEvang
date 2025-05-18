@@ -331,23 +331,6 @@ h3 {
   
 </section>
 
-<script>
-  function signIn() {
-      //console.log('hello')
-      document.querySelector('.general').style.display = "none";
-      document.querySelector('#signInOut').classList.remove('hidden');
-      document.querySelector('.signin-container').classList.remove('hidden');
-      document.querySelector('.signup-container').classList.add('hidden');
-  }
-  
-  function signUp() {
-    document.querySelector('.general').style.display = "none";
-    document.querySelector('#signInOut').classList.remove('hidden');
-    document.querySelector('.signup-container').classList.remove('hidden');
-    document.querySelector('.signin-container').classList.add('hidden');
-  }
-</script>
-  
   <div class="logged-in">
     
   <div class="container"  >
@@ -355,9 +338,9 @@ h3 {
       <div class="btn-outline" onclick="logOut()" style="text-align: center; width: 30%; margin-right: 0px;">LOGOUT</div>
     </div>
     <div style="width: 100%; display: flex; justify-content: space-between; margin-bottom: 2rem;">
-      <h4 class="triggerFresh" onclick="freshersFuc()">FRESHERS</h4>
-      <h4 class="inactive triggerStay" onclick="staylitesFuc()">STAYLITES</h4>
-      <h4 class="inactive triggerAllEcelFiles admin" onclick="excelFilesFuc()">FILES</h4>
+      <h4 class="triggerFresh">FRESHERS</h4>
+      <h4 class="inactive triggerStay">STAYLITES</h4>
+      <h4 class="inactive triggerAllEcelFiles admin">FILES</h4>
     </div>
 
     <form id="freshersForm">
@@ -468,19 +451,6 @@ h3 {
     // update firestore settings
     db.settings({ timestampsInSnapshots: true });
   </script>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      var modals = document.querySelectorAll('.modal');
-      var carousels = document.querySelectorAll('.carousel');
-      var tabs = document.querySelectorAll('.tabs');
-
-      M.Modal.init(modals);
-      M.Carousel.init(carousels);
-      M.Tabs.init(tabs)
-
-    })
-  </script>
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
   <script src="materialize.min.js"></script>
@@ -488,138 +458,6 @@ h3 {
   <script src="scripts/index.js"></script>
   <script src="scripts/app.js"></script>
   
-  <script>
-    
-  </script>
-  
-  <script defer>
-    function logOut() {
-      auth.signOut().then(() => alert("You logged out")).catch(err => alert(`${err.message}`));
-    }
-    
-    function freshersFuc() {
-      console.log('fresher');
-      document.querySelector('#freshersForm').classList.remove('hidden');
-      document.querySelector('#allExcelFiles').classList.add('hidden');
-      document.querySelector('#staylitesForm').classList.add('hidden')
-      document.querySelector('.triggerFresh').classList.remove('inactive');
-      document.querySelector('.triggerStay').classList.add('inactive');
-      document.querySelector('.triggerAllEcelFiles').classList.add('inactive');
-    }
-    
-    function staylitesFuc() {
-      document.querySelector('#freshersForm').classList.add('hidden');
-      document.querySelector('#allExcelFiles').classList.add('hidden');
-      document.querySelector('#staylitesForm').classList.remove('hidden');
-      document.querySelector('.triggerFresh').classList.add('inactive');
-      document.querySelector('.triggerStay').classList.remove('inactive');
-      document.querySelector('.triggerAllEcelFiles').classList.add('inactive');
-    }
-    
-    function excelFilesFuc() {
-      document.querySelector('#freshersForm').classList.add('hidden');
-      document.querySelector('#allExcelFiles').classList.remove('hidden');
-      document.querySelector('#staylitesForm').classList.add('hidden');
-      document.querySelector('.triggerFresh').classList.add('inactive');
-      document.querySelector('.triggerStay').classList.add('inactive');
-      document.querySelector('.triggerAllEcelFiles').classList.remove('inactive');
-}
-    
-  </script>
-  
-  <script>
-    function Notify() {
-      Notification.requestPermission().then( perm => {
-        if (perm === "granted") {
-          const notfice = new Notification("Test Notification", {
-            body: "Hi testing notification",
-          });
-          
-        }
-      })
-    }
-  </script>
-  
-  <script>
-    // Check if service workers and push notifications are supported
-if ('serviceWorker' in navigator && 'PushManager' in window) {
-  // Register the service worker
-  navigator.serviceWorker.register('/sw.js')
-    .then(function(registration) {
-      console.log('Service Worker registered');
-      
-      // Request permission for notifications
-      return requestPermission();
-    })
-    .then(function(subscription) {
-      console.log('User is subscribed:', subscription);
-      
-      // Send the subscription to your server
-      if (subscription) {
-        sendSubscriptionToServer(subscription);
-      }
-    })
-    .catch(function(error) {
-      console.error('Service Worker registration failed:', error);
-    });
-} else {
-  console.warn('Push messaging is not supported');
-}
-
-function requestPermission() {
-  return new Promise(function(resolve, reject) {
-    const permissionResult = Notification.requestPermission(function(result) {
-      resolve(result);
-    });
-
-    if (permissionResult) {
-      permissionResult.then(resolve, reject);
-    }
-  })
-  .then(function(permissionResult) {
-    if (permissionResult !== 'granted') {
-      throw new Error('Permission not granted for Notification');
-    }
-    
-    // Get the subscription
-    return navigator.serviceWorker.ready
-      .then(function(registration) {
-        return registration.pushManager.subscribe({
-          userVisibleOnly: true,
-          applicationServerKey: urlBase64ToUint8Array('BNY1bMZmhx_qZQr5yAayy0gqIMGq1kS6DZBHcFg8PuJYWywt4LxD1ZiHsGak1nBwkyyY-NnLAQFB8IQNOJ00J1E')
-        });
-      });
-  });
-}
-
-function sendSubscriptionToServer(subscription) {
-  // Here you would typically send the subscription to your backend
-  // Example using fetch:
-  return fetch('/api/save-subscription', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(subscription)
-  });
-}
-
-// Helper function to convert VAPID key
-function urlBase64ToUint8Array(base64String) {
-  const padding = '='.repeat((4 - base64String.length % 4) % 4);
-  const base64 = (base64String + padding)
-    .replace(/-/g, '+')
-    .replace(/_/g, '/');
-
-  const rawData = window.atob(base64);
-  const outputArray = new Uint8Array(rawData.length);
-
-  for (let i = 0; i < rawData.length; ++i) {
-    outputArray[i] = rawData.charCodeAt(i);
-  }
-  return outputArray;
-}
-  </script>
 </body>
 
 </html>

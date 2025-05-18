@@ -209,6 +209,7 @@ auth.onAuthStateChanged(user => {
     uploadBtnForFreshers.addEventListener('click', () => uploadFresherFile(user.uid));
     uploadBtnForStaylites.addEventListener('click', () => uploadFresherFile(user.uid));
     fetchExcelFiles();
+    console.log('user')
 
     // Check admin
     db.collection('users').doc(user.uid).get().then(snap => {
@@ -222,6 +223,7 @@ auth.onAuthStateChanged(user => {
 
   } else {
     setUI(null);
+    console.log('nomuser')
     //M.toast({ html: `No User logged In` });
   }
 });

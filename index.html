@@ -206,30 +206,7 @@ input[type="password"] {
 
 <body class="">
 
-  <!-- NAVBAR -->
-  <nav class="z-depth-0 transparent hidden">
-    <div class="nav-wrapper container">
-      <a href="#" class="brand-logo">
-        <!-- <img src="" style="width: 180px; margin-top: 10px;"> 
-        
-        add logo - evangelism is by fire-->
-      </a>
-      <ul id="nav-mobile" class="right">
 
-        <li class="logged-in">
-          <a href="#" class="grey-text" id="logout" onclick="logOut()">Logout</a>
-        </li>
-
-        <li class="logged-out">
-          <a href="#" class="grey-text modal-trigger" data-target="modal-login">Login</a>
-        </li>
-        <li class="logged-out">
-          <a href="#" class="grey-text modal-trigger" data-target="modal-signup">Sign up</a>
-        </li>
-        </span>
-      </ul>
-    </div>
-  </nav>
 
   <!-- NON USERS -->
    <section class="general logged-out">
@@ -245,84 +222,136 @@ input[type="password"] {
     </div>
    </section>
    
-   <!-- SIGNIN & SIGNUP-->
-<section id="signInOut" class="logged-out">
-  <div class="signin-container hidden">
-    <div class="login-card">
-      <h3>Welcome Back</h3>
-      <div class="verse-box" style="margin-bottom: 2rem;">
-        <p class="verse-reference">Mark 16:15</p>
-        <p class="verse-text">
-          "He said to them, 'Go into all the world and preach the gospel to all creation.'"
-        </p>
-      </div>
-
-      <form id="login-form">
-        <label for="email">Email Address</label>
-        <div class="input-wrapper">
-          <span class="icon">✉️</span>
-          <input type="email" id="login-email" placeholder="JohnDoe123@gmail.com" required />
-        </div>
-
-        <label for="password">Password</label>
-        <div class="input-wrapper">
-          <span class="icon material-symbols-outlined">password</span>
-          <input type="password" id="login-password" placeholder="***********" required />
-        </div>
-
-        <button type="submit" class="btn-fill">SIGN IN</button>
-      </form>
-      
-      <span style="display: block; text-align: center; width: 100%;"> or </span>
-      <button class="btn-outline" onclick="signUp()">SIGN UP</button>
-    </div>
-  </div>
-  
-  
-  <div class="signup-container hidden">
+     <div class="signup-container hidden">
     
     <h3>Get Started</h3>
-
+    
     <form id="signup-form">
-        <label for="username">Full Name</label>
-  <div class="input-wrapper">
-    <span class="icon">👤</span>
-    <input type="text" id="username" required placeholder="John Doe" />
-  </div>
-  
-  <label for="email">Email Address</label>
-  <div class="input-wrapper">
-    <span class="icon">✉️</span>
-    <input type="email" id="email" required placeholder="example@email.com" />
-  </div>
-
-  <label for="password">Password</label>
-  <div class="input-wrapper">
-    <span class="icon">🗝️</span>
-    <input type="password" id="password" required placeholder="********" />
-  </div>
-
-  <label for="signup-phone">Phone</label>
-  <div class="input-wrapper">
-    <span class="icon">📞</span>
-    <input type="tel" id="signup-phone" pattern="[0-9]{11}" required placeholder="08012345678" />
-  </div>
-
-  <label for="signup-whatsapp">WhatsApp</label>
-  <div class="input-wrapper">
-    <span class="icon">💬</span>
-    <input type="number" id="signup-whatsapp" required placeholder="08012345678" />
-  </div>
-
-  <button type="submit" class="btn-fill">Sign Up</button>
-    <span style="display: block; text-align: center; width: 100%;"> or </span>
+      <label for="username">Full Name</label>
+      <div class="input-wrapper">
+        <span class="icon material-symbols-outlined">person</span>
+        <input type="text" id="username" required placeholder="John Doe" />
+      </div>
+      
+      <label for="email">Email Address</label>
+      <div class="input-wrapper">
+        <span class="icon material-symbols-outlined">mail</span>
+        <input type="email" id="email" required placeholder="example@email.com" />
+      </div>
+      
+      <label for="password">Password</label>
+      <div class="input-wrapper">
+        <span class="icon material-symbols-outlined">key</span>
+        <input type="password" id="password" required placeholder="********" />
+      </div>
+      
+      <label for="signup-phone">Phone</label>
+      <div class="input-wrapper">
+        <span class="icon material-symbols-outlined">call</span>
+        <input type="tel" id="signup-phone" pattern="[0-9]{11}" required placeholder="08012345678" />
+      </div>
+      
+      <label for="signup-whatsapp">WhatsApp</label>
+      <div class="input-wrapper">
+        <span class="icon material-symbols-outlined">chat</span>
+        <input type="number" id="signup-whatsapp" required placeholder="08012345678" />
+      </div>
+      
+      <button type="submit" class="btn-fill">SIGN UP</button>
+      <span style="display: block; text-align: center; width: 100%;"> or </span>
       <button class="btn-outline" onclick="signIn()">SIGN IN</button>
-</form>
-
+    </form>
+    
   </div>
   
-</section>
-
+  </section>
+  
+  <div class="logged-in">
+    
+    <div class="container">
+      <div style="width: 100%; display: flex; justify-content: right;">
+        <div class="btn-outline logout" style="text-align: center; width: 30%; margin-right: 0px;">LOGOUT</div>
+      </div>
+      <div style="width: 100%; display: flex; justify-content: space-between; margin-bottom: 2rem;">
+        <h4 class="triggerFresh">FRESHERS</h4>
+        <h4 class="inactive triggerStay">STAYLITES</h4>
+        <h4 class="inactive triggerAllEcelFiles admin">FILES</h4>
+      </div>
+      
+      <form id="freshersForm">
+        <label for="name">Full Name</label>
+        <div class="input-wrapper">
+          <span class="icon"></span>
+          <input type="text" id="name" required />
+        </div>
+        
+        <label for="dept">Department</label>
+        <div class="input-wrapper">
+          <span class="icon"></span>
+          <input type="text" id="dept" required />
+        </div>
+        
+        <label for="address">Address</label>
+        <div class="input-wrapper">
+          <span class="icon"></span>
+          <input type="text" id="address" required />
+        </div>
+        
+        <label for="phone">Phone</label>
+        <div class="input-wrapper">
+          <span class="icon"></span>
+          <input type="tel" id="phone" pattern="[0-9]{11}" required />
+        </div>
+        <span>
+          <button type="submit" class="btn-fill">SAVE OFFLINE</button>
+          <button class="btn-outline" onclick="downloadExcel()">DOWNLOAD</button>
+        </span>
+        <span style="display: block; text-align: center; width: 100%;">______</span>
+        <button class="btn-fill" id="uploadExcelFresher">UPLOAD</button>
+      </form>
+      <form id="staylitesForm" class="hidden">
+        <label for="name">Full Name</label>
+        <div class="input-wrapper">
+          <span class="icon"></span>
+          <input type="text" id="name" required />
+        </div>
+        
+        <label for="dept">Department</label>
+        <div class="input-wrapper">
+          <span class="icon"></span>
+          <input type="text" id="dept" required />
+        </div>
+        
+        <label for="level">Level</label>
+        <div class="input-wrapper">
+          <span class="icon"></span>
+          <input type="number" id="level" required />
+        </div>
+        
+        <label for="address">Address</label>
+        <div class="input-wrapper">
+          <span class="icon"></span>
+          <input type="text" id="address" required />
+        </div>
+        
+        <label for="phone">Phone</label>
+        <div class="input-wrapper">
+          <span class="icon"></span>
+          <input type="tel" id="phone" pattern="[0-9]{11}" required />
+        </div>
+        
+        <span>
+          <button type="submit" class="btn-fill">SAVE OFFLINE</button>
+          <button class="btn-outline" onclick="downloadExcelStay()">DOWNLOAD</button>
+        </span>
+        <span style="display: block; text-align: center; width: 100%;">_____________</span>
+        <button class="btn-fill" id="uploadExcelStaylite" onclick="">UPLOAD</button>
+      </form>
+      
+      <div id="allExcelFiles" class="admin hidden"></div>
+    </div>
+  </div>
+   
 <script>
   function signIn() {
       //console.log('hello')
@@ -339,92 +368,6 @@ input[type="password"] {
     document.querySelector('.signin-container').classList.add('hidden');
   }
 </script>
-  
-  <div class="logged-in">
-    
-  <div class="container"  >
-    <div style="width: 100%; display: flex; justify-content: right;">
-      <div class="btn-fill" onclick="logOut()" style="text-align: center; width: 30%; margin-right: 0px;">LOGOUT</div>
-    </div>
-    <div style="width: 100%; display: flex; justify-content: space-between; margin-bottom: 2rem;">
-      <h4 class="triggerFresh" onclick="freshersFuc()">FRESHERS</h4>
-      <h4 class="inactive triggerStay" onclick="staylitesFuc()">STAYLITES</h4>
-      <h4 class="inactive triggerAllEcelFiles admin" onclick="excelFilesFuc()">FILES</h4>
-    </div>
-
-    <form id="freshersForm">
-  <label for="name">Full Name</label>
-  <div class="input-wrapper">
-    <span class="icon"></span>
-    <input type="text" id="name" required />
-  </div>
-  
-  <label for="dept">Department</label>
-  <div class="input-wrapper">
-    <span class="icon"></span>
-    <input type="text" id="dept" required />
-  </div>
-  
-    <label for="address">Address</label>
-  <div class="input-wrapper">
-    <span class="icon"></span>
-    <input type="text" id="address" required />
-  </div>
-
-  <label for="phone">Phone</label>
-  <div class="input-wrapper">
-    <span class="icon"></span>
-    <input type="tel" id="phone" pattern="[0-9]{11}" required />
-  </div>
-  <span>
-      <button type="submit" class="btn-fill">SAVE OFFLINE</button>
-      <button class="btn-outline" onclick="downloadExcel()">DOWNLOAD</button>
-  </span>
-    <span style="display: block; text-align: center; width: 100%;">______</span>
-      <button class="btn-fill" id="uploadExcelFresher">UPLOAD</button>
-</form>
-    <form id="staylitesForm" class="hidden">
-  <label for="name">Full Name</label>
-  <div class="input-wrapper">
-    <span class="icon"></span>
-    <input type="text" id="name" required />
-  </div>
-  
-  <label for="dept">Department</label>
-  <div class="input-wrapper">
-    <span class="icon"></span>
-    <input type="text" id="dept" required />
-  </div>
-  
-    <label for="level">Level</label>
-  <div class="input-wrapper">
-    <span class="icon"></span>
-    <input type="number" id="level" required />
-  </div>
-  
-    <label for="address">Address</label>
-  <div class="input-wrapper">
-    <span class="icon"></span>
-    <input type="text" id="address" required />
-  </div>
-
-  <label for="phone">Phone</label>
-  <div class="input-wrapper">
-    <span class="icon"></span>
-    <input type="tel" id="phone" pattern="[0-9]{11}" required />
-  </div>
-
- <span>
-      <button type="submit" class="btn-fill">SAVE OFFLINE</button>
-      <button class="btn-outline" onclick="downloadExcelStay()">DOWNLOAD</button>
-  </span>
-    <span style="display: block; text-align: center; width: 100%;">_____________</span>
-      <button class="btn-fill" id="uploadExcelStaylite" onclick="">UPLOAD</button>
-</form>
-
-    <div id="allExcelFiles" class="admin hidden"></div>
-  </div>
-  </div>
   
   
   <button class="hidden button" type="submit" onclick="fetchExcelFiles()">Notify me</button>

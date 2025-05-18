@@ -193,15 +193,14 @@ async function fetchExcelFiles() {
 
 // UI control
 const setUI = (user) => {
-  const show = user ? 'block' : 'none';
-  const hide = user ? 'none' : 'block';
-
-  userInfo.forEach(el => el.style.display = show);
-  outsidersInfo.forEach(el => el.style.display = hide);
-  //outsidersInfo.forEach((el) => el.classList.remove('hidden');
-  console.log('hello');
+  if (user) {
+    document.querySelectorAll('.logged-out').forEach(el => el.style.display = 'none');
+    document.querySelectorAll('.logged-in').forEach(el => el.style.display = 'block');
+  } else {
+    document.querySelectorAll('.logged-out').forEach(el => el.style.display = 'block');
+    document.querySelectorAll('.logged-in').forEach(el => el.style.display = 'none');
+  }
 };
-
 // Unified auth listener
 auth.onAuthStateChanged(user => {
   if (user) {
@@ -209,6 +208,7 @@ auth.onAuthStateChanged(user => {
     uploadBtnForFreshers.addEventListener('click', () => uploadFresherFile(user.uid));
     uploadBtnForStaylites.addEventListener('click', () => uploadFresherFile(user.uid));
     fetchExcelFiles();
+    console.log('user')
 
     // Check admin
     db.collection('users').doc(user.uid).get().then(snap => {
@@ -222,6 +222,7 @@ auth.onAuthStateChanged(user => {
 
   } else {
     setUI(null);
-    M.toast({ html: `No User logged In` });
+    console.log('')
+    //M.toast({ html: `No User logged In` });
   }
 });

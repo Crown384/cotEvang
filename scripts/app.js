@@ -222,6 +222,6 @@ auth.onAuthStateChanged(user => {
 
   } else {
     setUI(null);
-    M.toast({ html: `No User logged In` });
+    //M.toast({ html: `No User logged In` });
   }
 });

@@ -1,6 +1,6 @@
 const signupForm = document.querySelector('#signup-form');
 const loginForm = document.querySelector('#login-form');
-const logOut = document.querySelector('#logout');
+// const logOut = document.querySelector('#logout');
 
 // SIGNUP USERS
 signupForm.addEventListener('submit', e => {

@@ -11,6 +11,40 @@
   <!--<link rel="stylesheet" href="materialize.min.css"> -->
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <script>
+      function logOut() {
+        auth.signOut().then(() => alert("You logged out")).catch(err => alert(`${err.message}`));
+      }
+      
+      function freshersFuc() {
+        console.log('fresher');
+        document.querySelector('#freshersForm').classList.remove('hidden');
+        document.querySelector('#allExcelFiles').classList.add('hidden');
+        document.querySelector('#staylitesForm').classList.add('hidden')
+        document.querySelector('.triggerFresh').classList.remove('inactive');
+        document.querySelector('.triggerStay').classList.add('inactive');
+        document.querySelector('.triggerAllEcelFiles').classList.add('inactive');
+      }
+      
+      function staylitesFuc() {
+        document.querySelector('#freshersForm').classList.add('hidden');
+        document.querySelector('#allExcelFiles').classList.add('hidden');
+        document.querySelector('#staylitesForm').classList.remove('hidden');
+        document.querySelector('.triggerFresh').classList.add('inactive');
+        document.querySelector('.triggerStay').classList.remove('inactive');
+        document.querySelector('.triggerAllEcelFiles').classList.add('inactive');
+      }
+      
+      function excelFilesFuc() {
+        document.querySelector('#freshersForm').classList.add('hidden');
+        document.querySelector('#allExcelFiles').classList.remove('hidden');
+        document.querySelector('#staylitesForm').classList.add('hidden');
+        document.querySelector('.triggerFresh').classList.add('inactive');
+        document.querySelector('.triggerStay').classList.add('inactive');
+        document.querySelector('.triggerAllEcelFiles').classList.remove('inactive');
+  }
+      
+    </script>
   <style>
     .material-symbols-outlined {
       font-variation-settings:
@@ -239,7 +273,7 @@ h3 {
   <!-- NON USERS -->
    <section class="general logged-out">
      <div style="width: 100%; display: flex; justify-content: center; align-items: center; margin-top: 8rem;">
-       <img src="/assests/cotlogo.png" alt="cot logo" width="75%" height="25%">
+       <img src="./assests/dashboard 1.jpeg" alt="cot logo" width="75%" height="25%">
      </div>
     <div class="box" style="color: whitesmoke;">
       <div class="action">
@@ -444,6 +478,13 @@ h3 {
     </footer>
 
 
+    <!-- Use modern Firebase -->
+<!-- <script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js";
+  import { getAuth } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js";
+  import { getFirestore } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js";
+</script> -->
+
   <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-firestore.js"></script>
@@ -483,7 +524,7 @@ h3 {
   </script>
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
-  <script src="materialize.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script src="scripts/auth.js"></script>
   <script src="scripts/index.js"></script>
   <script src="scripts/app.js"></script>
@@ -492,40 +533,7 @@ h3 {
     
   </script>
   
-  <script defer>
-    function logOut() {
-      auth.signOut().then(() => alert("You logged out")).catch(err => alert(`${err.message}`));
-    }
-    
-    function freshersFuc() {
-      console.log('fresher');
-      document.querySelector('#freshersForm').classList.remove('hidden');
-      document.querySelector('#allExcelFiles').classList.add('hidden');
-      document.querySelector('#staylitesForm').classList.add('hidden')
-      document.querySelector('.triggerFresh').classList.remove('inactive');
-      document.querySelector('.triggerStay').classList.add('inactive');
-      document.querySelector('.triggerAllEcelFiles').classList.add('inactive');
-    }
-    
-    function staylitesFuc() {
-      document.querySelector('#freshersForm').classList.add('hidden');
-      document.querySelector('#allExcelFiles').classList.add('hidden');
-      document.querySelector('#staylitesForm').classList.remove('hidden');
-      document.querySelector('.triggerFresh').classList.add('inactive');
-      document.querySelector('.triggerStay').classList.remove('inactive');
-      document.querySelector('.triggerAllEcelFiles').classList.add('inactive');
-    }
-    
-    function excelFilesFuc() {
-      document.querySelector('#freshersForm').classList.add('hidden');
-      document.querySelector('#allExcelFiles').classList.remove('hidden');
-      document.querySelector('#staylitesForm').classList.add('hidden');
-      document.querySelector('.triggerFresh').classList.add('inactive');
-      document.querySelector('.triggerStay').classList.add('inactive');
-      document.querySelector('.triggerAllEcelFiles').classList.remove('inactive');
-}
-    
-  </script>
+ 
   
   <script>
     function Notify() {

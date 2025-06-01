@@ -333,7 +333,7 @@ h3 {
   
 </section>
   
-  <div class="logged-in">
+<section class="logged-in">
     
   <div class="container"  >
     <div style="width: 100%; display: flex; justify-content: right;">
@@ -417,7 +417,7 @@ h3 {
 
     <div id="allExcelFiles" class="admin hidden"></div>
   </div>
-  </div>
+  </section>
   
   
   <button class="hidden button" type="submit" onclick="fetchExcelFiles()">Notify me</button>
@@ -452,6 +452,7 @@ h3 {
 
     // update firestore settings
     db.settings({ timestampsInSnapshots: true });
+    console.log("Firebase")
   </script>
 
   <script>

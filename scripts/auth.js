@@ -2,38 +2,40 @@ const signupForm = document.querySelector('#signup-form');
 const loginForm = document.querySelector('#login-form');
 const logOut = document.querySelector('#logout');
 
-// SIGNUP USERS
-signupForm.addEventListener('submit', e => {
-  e.preventDefault();
-  
-  const email = signupForm.email.value;
-  const password = signupForm.password.value;
-  
-  auth.createUserWithEmailAndPassword(email, password).then(cred => {
-    console.log(cred.user.uid);
-    return db.collection("users").doc(cred.user.uid).set({
-      name: signupForm.username.value,
-      phone: signupForm['signup-phone'].value,
-      whatsapp: signupForm['signup-whatsapp'].value,
-    });
-  }).then (() => {
-    signupForm.reset();
-  //  const modalInstance = 
-   // M.Modal.getInstance(document.querySelector('#modal-signup')).close();
-  }).catch(err => {
-    console.log(err.message)
-    M.toast({html: `${err.message}`});
-  })
-})
 
-loginForm.addEventListener('submit', e => {
+// Handle Login Form Submission
+document.getElementById('login-form')?.addEventListener('submit', async (e) => {
   e.preventDefault();
-  
-  const email = loginForm['login-email'].value;
-  const password = loginForm['login-password'].value;
-  
-  auth.signInWithEmailAndPassword(email, password).then(user => {
-    alert('you logged in');
-    loginForm.reset();
-  }).catch(err => alert(err.message));
-})
+  const email = document.getElementById('login-email').value;
+  const password = document.getElementById('login-password').value;
+
+  try {
+    await auth.signInWithEmailAndPassword(email, password);
+    M.toast({ html: "Login successful!" });
+  } catch (error) {
+    M.toast({ html: `Login failed: ${error.message}` });
+  }
+});
+
+// Handle Signup Form Submission
+document.getElementById('signup-form')?.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
+  const name = document.getElementById('username').value;
+  const phone = document.getElementById('signup-phone').value;
+  const whatsapp = document.getElementById('signup-whatsapp').value;
+
+  try {
+    const { user } = await auth.createUserWithEmailAndPassword(email, password);
+    await db.collection('users').doc(user.uid).set({
+      name,
+      phone,
+      whatsapp,
+      isAdmin: false,
+    });
+    M.toast({ html: "Account created successfully!" });
+  } catch (error) {
+    M.toast({ html: `Signup failed: ${error.message}` });
+  }
+});

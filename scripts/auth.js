@@ -4,7 +4,7 @@ const logOut = document.querySelector('#logout');
 
 
 // Handle Login Form Submission
-document.getElementById('login-form')?.addEventListener('submit', async (e) => {
+document.getElementById('login-form').addEventListener('submit', async (e) => {
   e.preventDefault();
   const email = document.getElementById('login-email').value;
   const password = document.getElementById('login-password').value;
@@ -12,13 +12,14 @@ document.getElementById('login-form')?.addEventListener('submit', async (e) => {
   try {
     await auth.signInWithEmailAndPassword(email, password);
     M.toast({ html: "Login successful!" });
+    alert("Logged in")
   } catch (error) {
     M.toast({ html: `Login failed: ${error.message}` });
   }
 });
 
 // Handle Signup Form Submission
-document.getElementById('signup-form')?.addEventListener('submit', async (e) => {
+document.getElementById('signup-form').addEventListener('submit', async (e) => {
   e.preventDefault();
   const email = document.getElementById('email').value;
   const password = document.getElementById('password').value;

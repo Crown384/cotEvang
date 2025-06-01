@@ -1,4 +1,4 @@
-function logOut() {
+const logOut = () => {
   auth.signOut().then(() => alert("You logged out")).catch(err => alert(`${err.message}`));
 }
 
@@ -21,7 +21,7 @@ const staylitesFuc = () => {
   document.querySelector('.triggerAllEcelFiles').classList.add('inactive');
 }
 
-function excelFilesFuc() {
+const excelFilesFuc = () => {
   document.querySelector('#freshersForm').classList.add('hidden');
   document.querySelector('#allExcelFiles').classList.remove('hidden');
   document.querySelector('#staylitesForm').classList.add('hidden');
@@ -33,7 +33,7 @@ function excelFilesFuc() {
 // Add event listeners when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
   // Logout button
-  document.querySelector('.btn-outline').addEventListener('click', logOut);
+  document.querySelector('.lgOut').addEventListener('click', logOut);
   
   // Menu buttons
   document.querySelector('.triggerFresh').addEventListener('click', freshersFuc);

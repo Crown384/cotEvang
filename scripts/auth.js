@@ -13,15 +13,6 @@ import { getFirestore, doc, setDoc } from "firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_AUTH_DOMAIN",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_STORAGE_BUCKET",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId: "YOUR_APP_ID"
-};
-// Your web app's Firebase configuration
-const firebaseConfig = {
   apiKey: "AIzaSyCryhTlC3iWCjjNlAFzqJbJoMGUXTPoyxo",
   authDomain: "evangelism-app-f36d8.firebaseapp.com",
   projectId: "evangelism-app-f36d8",
@@ -86,19 +77,3 @@ document.getElementById('login-form')?.addEventListener('submit', async (e) => {
     M.toast({ html: `Login failed: ${error.message}` });
   }
 });
-
-
-// UI control
-
-// Toggle between signin/signup forms
-function signIn() {
-  document.querySelector('.signin-container').classList.remove('hidden');
-  document.querySelector('.signup-container').classList.add('hidden');
-}
-
-function signUp() {
-  document.querySelector('.signup-container').classList.remove('hidden');
-  document.querySelector('.signin-container').classList.add('hidden');
-}
-
-// Unified auth listener

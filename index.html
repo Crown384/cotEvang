@@ -330,23 +330,6 @@ h3 {
   </div>
   
 </section>
-
-<script>
-  function signIn() {
-      //console.log('hello')
-      document.querySelector('.general').style.display = "none";
-      document.querySelector('#signInOut').classList.remove('hidden');
-      document.querySelector('.signin-container').classList.remove('hidden');
-      document.querySelector('.signup-container').classList.add('hidden');
-  }
-  
-  function signUp() {
-    document.querySelector('.general').style.display = "none";
-    document.querySelector('#signInOut').classList.remove('hidden');
-    document.querySelector('.signup-container').classList.remove('hidden');
-    document.querySelector('.signin-container').classList.add('hidden');
-  }
-</script>
   
   <div class="logged-in">
     
@@ -591,7 +574,7 @@ function urlBase64ToUint8Array(base64String) {
       auth.signOut().then(() => alert("You logged out")).catch(err => alert(`${err.message}`));
     }
     
-    function freshersFuc() {
+    const freshersFuc = () => {
       console.log('fresher');
       document.querySelector('#freshersForm').classList.remove('hidden');
       document.querySelector('#allExcelFiles').classList.add('hidden');
@@ -620,6 +603,22 @@ function urlBase64ToUint8Array(base64String) {
 }
     
   </script>
+  <script>
+  function signIn() {
+      //console.log('hello')
+      document.querySelector('.general').style.display = "none";
+      document.querySelector('#signInOut').classList.remove('hidden');
+      document.querySelector('.signin-container').classList.remove('hidden');
+      document.querySelector('.signup-container').classList.add('hidden');
+  }
+  
+  function signUp() {
+    document.querySelector('.general').style.display = "none";
+    document.querySelector('#signInOut').classList.remove('hidden');
+    document.querySelector('.signup-container').classList.remove('hidden');
+    document.querySelector('.signin-container').classList.add('hidden');
+  }
+</script>
 </body>
 
 </html>

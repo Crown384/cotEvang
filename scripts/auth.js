@@ -74,6 +74,7 @@ document.getElementById('login-form')?.addEventListener('submit', async (e) => {
     M.toast({ html: "Login successful!" });
   } catch (error) {
     console.error("Login error:", error);
+    alert("err")
     M.toast({ html: `Login failed: ${error.message}` });
   }
 });

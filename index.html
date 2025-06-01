@@ -333,16 +333,15 @@ h3 {
   
   <div class="logged-in">
     
-<div class="container">
-  <div style="width: 100%; display: flex; justify-content: right;">
-    <button class="btn-outline" style="text-align: center; width: 30%; margin-right: 0px;">LOGOUT</button>
-  </div>
-  <div style="width: 100%; display: flex; justify-content: space-between; margin-bottom: 2rem;">
-    <button class="triggerFresh">FRESHERS</button>
-    <button class="inactive triggerStay">STAYLITES</button>
-    <button class="inactive triggerAllEcelFiles admin">FILES</button>
-  </div>
-</div>
+  <div class="container"  >
+    <div style="width: 100%; display: flex; justify-content: right;">
+      <button class="btn-outline" style="text-align: center; width: 30%; margin-right: 0px;">LOGOUT</button>
+    </div>
+    <div style="width: 100%; display: flex; justify-content: space-between; margin-bottom: 2rem;">
+      <button class="triggerFresh">FRESHERS</button>
+      <button class="inactive triggerStay">STAYLITES</button>
+      <button class="inactive triggerAllEcelFiles admin">FILES</button>
+    </div>
 
     <form id="freshersForm">
   <label for="name">Full Name</label>
@@ -571,7 +570,37 @@ function urlBase64ToUint8Array(base64String) {
   </script>
   
     <script>
+    function logOut() {
+      auth.signOut().then(() => alert("You logged out")).catch(err => alert(`${err.message}`));
+    }
     
+    const freshersFuc = () => {
+      console.log('fresher');
+      document.querySelector('#freshersForm').classList.remove('hidden');
+      document.querySelector('#allExcelFiles').classList.add('hidden');
+      document.querySelector('#staylitesForm').classList.add('hidden')
+      document.querySelector('.triggerFresh').classList.remove('inactive');
+      document.querySelector('.triggerStay').classList.add('inactive');
+      document.querySelector('.triggerAllEcelFiles').classList.add('inactive');
+    }
+    
+    const staylitesFuc = () => {
+      document.querySelector('#freshersForm').classList.add('hidden');
+      document.querySelector('#allExcelFiles').classList.add('hidden');
+      document.querySelector('#staylitesForm').classList.remove('hidden');
+      document.querySelector('.triggerFresh').classList.add('inactive');
+      document.querySelector('.triggerStay').classList.remove('inactive');
+      document.querySelector('.triggerAllEcelFiles').classList.add('inactive');
+    }
+    
+    function excelFilesFuc() {
+      document.querySelector('#freshersForm').classList.add('hidden');
+      document.querySelector('#allExcelFiles').classList.remove('hidden');
+      document.querySelector('#staylitesForm').classList.add('hidden');
+      document.querySelector('.triggerFresh').classList.add('inactive');
+      document.querySelector('.triggerStay').classList.add('inactive');
+      document.querySelector('.triggerAllEcelFiles').classList.remove('inactive');
+}
     
   </script>
   <script>

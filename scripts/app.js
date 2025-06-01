@@ -198,20 +198,23 @@ const setUI = (user) => {
 
   userInfo.forEach(el => el.style.display = show);
   outsidersInfo.forEach(el => el.style.display = hide);
-  //outsidersInfo.forEach((el) => el.classList.remove('hidden');
-  console.log('hello');
+  
+  // Reset admin status on logout
+  if (!user) {
+    adminInfo.forEach(el => el.classList.remove('showAdmin'));
+  }
 };
 
-// Unified auth listener
-auth.onAuthStateChanged(user => {
+onAuthStateChanged(auth, (user) => {
   if (user) {
     setUI(user);
     uploadBtnForFreshers.addEventListener('click', () => uploadFresherFile(user.uid));
-    uploadBtnForStaylites.addEventListener('click', () => uploadFresherFile(user.uid));
+    uploadBtnForStaylites.addEventListener('click', () => uploadaStayliteFile(user.uid));
     fetchExcelFiles();
 
-    // Check admin
-    db.collection('users').doc(user.uid).get().then(snap => {
+    // Check admin status
+    const userDoc = doc(db, 'users', user.uid);
+    getDoc(userDoc).then((snap) => {
       const isAdmin = snap.data()?.isAdmin;
       if (isAdmin) {
         adminInfo.forEach(el => el.classList.add('showAdmin'));
@@ -222,6 +225,5 @@ auth.onAuthStateChanged(user => {
 
   } else {
     setUI(null);
-    //M.toast({ html: `No User logged In` });
   }
 });

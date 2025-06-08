@@ -224,6 +224,6 @@ onAuthStateChanged(auth, (user) => {
     });
 
   } else {
-    setUI(null);
+    setUI(false);
   }
 });

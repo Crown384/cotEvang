@@ -1,10 +1,10 @@
 document.querySelector('.lgOut')?.addEventListener('click', async () => {
   try {
     await signOut(auth);
-    M.toast({ html: "Logged out successfully." });
+    // M.toast({ html: "Logged out successfully." });
   } catch (error) {
     console.error("Logout error:", error);
-    M.toast({ html: `Logout failed: ${error.message}` });
+    // M.toast({ html: `Logout failed: ${error.message}` });
   }
 });
 

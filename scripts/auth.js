@@ -1,3 +1,7 @@
+const loginForm = document.querySelector('#login-form');
+const signUpForm = document.querySelector('#signup-form');
+
+
 // Import the functions you need from the SDKs
 import { initializeApp } from "firebase/app";
 import { 
@@ -30,7 +34,7 @@ const db = getFirestore(app);
 
 
 // Handle Signup Form Submission
-document.getElementById('signup-form')?.addEventListener('submit', async (e) => {
+signUpForm.addEventListener('submit', async (e) => {
   e.preventDefault();
   const email = document.getElementById('email').value;
   const password = document.getElementById('password').value;
@@ -60,10 +64,10 @@ document.getElementById('signup-form')?.addEventListener('submit', async (e) => 
 });
 
 // Handle Login Form Submission
-document.getElementById('login-form')?.addEventListener('submit', async (e) => {
+loginForm.addEventListener('submit', async (e) => {
   e.preventDefault();
-  const email = document.getElementById('login-email').value;
-  const password = document.getElementById('login-password').value;
+  const email = loginForm['login-email'].value;
+  const password = loginForm['login-password'].value;
 
   try {
     // Set persistence first
@@ -71,10 +75,10 @@ document.getElementById('login-form')?.addEventListener('submit', async (e) => {
     
     // Then sign in
     await signInWithEmailAndPassword(auth, email, password);
-    M.toast({ html: "Login successful!" });
+    // M.toast({ html: "Login successful!" });
   } catch (error) {
     console.error("Login error:", error);
-    alert("err")
-    M.toast({ html: `Login failed: ${error.message}` });
+    alert("err");
+    // M.toast({ html: `Login failed: ${error.message}` });
   }
 });

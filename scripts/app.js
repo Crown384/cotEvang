@@ -1,3 +1,5 @@
+import {onAuthStateChanged} from 'firebase/auth';
+
 const freshersForm = document.querySelector('#freshersForm');
 const staylitesForm = document.querySelector('#staylitesForm');
 const uploadBtnForStaylites = document.querySelector('#uploadExcelStaylite');
@@ -26,6 +28,7 @@ freshersForm.addEventListener('submit', e => {
   M.toast({ html: "Saved Offline" });
   freshersForm.reset();
 });
+
 staylitesForm.addEventListener('submit', e => {
   e.preventDefault();
 

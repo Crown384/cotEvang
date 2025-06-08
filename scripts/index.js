@@ -41,7 +41,7 @@ const excelFilesFuc = () => {
 document.addEventListener('DOMContentLoaded', () => {
   // Logout button
   document.querySelector('.lgOut').addEventListener('click', logOut);
-  
+
   // Menu buttons
   document.querySelector('.triggerFresh').addEventListener('click', freshersFuc);
   document.querySelector('.triggerStay').addEventListener('click', staylitesFuc);

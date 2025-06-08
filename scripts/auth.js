@@ -56,10 +56,10 @@ signUpForm.addEventListener('submit', async (e) => {
       createdAt: new Date()
     });
     
-    M.toast({ html: "Account created successfully!" });
+    // M.toast({ html: "Account created successfully!" });
   } catch (error) {
     console.error("Signup error:", error);
-    M.toast({ html: `Signup failed: ${error.message}` });
+    // M.toast({ html: `Signup failed: ${error.message}` });
   }
 });
 
